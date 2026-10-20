@@ -1,30 +1,33 @@
 /**
- * Подвал сайта: контакты, разделы, документы, соцсети.
- * Ссылки на страницы — настоящие, поэтому поисковик видит структуру сайта.
+ * Подвал страницы объекта: контакты компании, разделы главной, соцсети.
  */
 import { Link } from "wouter";
 import { SiTelegram, SiVk } from "react-icons/si";
-import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { COMPANY, NAV, SOCIALS } from "@/content/site";
-import { DOCUMENTS } from "@/content/documents";
-import { PROJECTS } from "@/content/projects";
 import { url } from "@/lib/url";
 
 export function SiteFooter() {
   return (
     <footer className="border-t border-border mt-8 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           <div>
             <p className="text-sm font-bold text-foreground mb-4">{COMPANY.name}</p>
             <ul className="space-y-3 text-sm">
               <li>
-                <a href={url(COMPANY.phoneHref)} className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+                <a
+                  href={COMPANY.phoneHref}
+                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+                >
                   <Phone className="w-4 h-4 shrink-0" /> {COMPANY.phone}
                 </a>
               </li>
               <li>
-                <a href={url(`mailto:${COMPANY.email}`)} className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+                <a
+                  href={`mailto:${COMPANY.email}`}
+                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+                >
                   <Mail className="w-4 h-4 shrink-0" /> {COMPANY.email}
                 </a>
               </li>
@@ -39,7 +42,7 @@ export function SiteFooter() {
             <ul className="space-y-2 text-sm">
               {NAV.map((n) => (
                 <li key={n.href}>
-                  <Link href={url(n.href)} className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href={n.href} className="text-muted-foreground hover:text-foreground transition-colors">
                     {n.label}
                   </Link>
                 </li>
@@ -48,58 +51,40 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <p className="text-sm font-bold text-foreground mb-4">Объекты</p>
+            <p className="text-sm font-bold text-foreground mb-4">На картах и в соцсетях</p>
             <ul className="space-y-2 text-sm">
-              {PROJECTS.slice(0, 5).map((p) => (
-                <li key={p.slug}>
-                  <Link href={url(`/projects/${p.slug}/`)} className="text-muted-foreground hover:text-foreground transition-colors">
-                    {p.title}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link href={url("/projects/")} className="text-primary hover:text-foreground transition-colors">
-                  Все объекты
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <p className="text-sm font-bold text-foreground mb-4">Документы</p>
-            <ul className="space-y-2 text-sm">
-              {DOCUMENTS.slice(0, 5).map((d) => (
-                <li key={url(d.file)}>
+              {SOCIALS.slice(0, 2).map((s) => (
+                <li key={s.href}>
                   <a
-                    href={url(d.file)}
+                    href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    {d.title}
+                    {s.label}
                   </a>
                 </li>
               ))}
-              <li>
-                <Link href={url("/documents/")} className="text-primary hover:text-foreground transition-colors">
-                  Все документы
-                </Link>
-              </li>
             </ul>
-            <div className="flex items-center gap-5 mt-5">
-              <a href={url(SOCIALS[3].href)} target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="text-muted-foreground hover:text-[#2AABEE] transition-colors">
-                <SiTelegram className="w-5 h-5" />
-              </a>
-              <a href={url(SOCIALS[2].href)} target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте" className="text-muted-foreground hover:text-[#0077FF] transition-colors">
+            <div className="flex items-center gap-5 mt-4">
+              <a
+                href={SOCIALS[2].href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="ВКонтакте"
+                className="text-muted-foreground hover:text-[#0077FF] transition-colors"
+              >
                 <SiVk className="w-5 h-5" />
               </a>
-              {SOCIALS.slice(0, 2).map((s) => (
-                <a key={s.href} href={url(s.href)} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  <span className="inline-flex items-center gap-1">
-                    {s.label} <ArrowUpRight className="w-3 h-3" />
-                  </span>
-                </a>
-              ))}
+              <a
+                href={SOCIALS[3].href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Telegram"
+                className="text-muted-foreground hover:text-[#2AABEE] transition-colors"
+              >
+                <SiTelegram className="w-5 h-5" />
+              </a>
             </div>
           </div>
         </div>
