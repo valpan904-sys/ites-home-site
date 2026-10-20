@@ -115,8 +115,9 @@ def main():
     ap.add_argument("--hero", help="имя файла, который станет главным кадром")
     ap.add_argument("--alt", default="", help="подпись для поисковиков")
     ap.add_argument("--skip", action="append", default=[], help="часть имени файла, который не берём (можно несколько раз)")
+    ap.add_argument("--trim", action="store_true", help="срезать белые поля по краям (по умолчанию выключено)")
     ap.add_argument("--white", type=int, default=242, help="порог белого для обрезки полей")
-    ap.add_argument("--max-loss", type=int, default=45, help="сколько процентов площади допустимо потерять")
+    ap.add_argument("--max-loss", type=int, default=30, help="сколько процентов площади допустимо потерять")
     ap.add_argument("--dry-run", action="store_true", help="только показать, что получится")
     args = ap.parse_args()
 
@@ -153,7 +154,9 @@ def main():
             continue
 
         w0, h0 = im.size
-        im, cut_border = trim_uniform_border(im, white=args.white)
+        # поля срезаем только по явной просьбе: у зимних кадров белое небо
+        # неотличимо от белой рамки, и автоматика съедает верх фотографии
+        im, cut_border = trim_uniform_border(im, white=args.white) if args.trim else (im, 0.0)
         loss = 1 - (im.width * im.height) / (w0 * h0)
         framed = crop_to_ratio(im)
         loss = 1 - (framed.width * framed.height) / (w0 * h0)

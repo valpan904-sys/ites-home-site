@@ -564,100 +564,114 @@
   {
    "src": "/media/projects/kotelnaya-tplus/01.webp",
    "thumb": "/media/projects/kotelnaya-tplus/01-t.webp",
-   "w": 1089,
-   "h": 817,
+   "w": 1138,
+   "h": 854,
    "alt": "Куйбышевская отопительная котельная, ПАО Т+ — фото 1"
   },
   {
    "src": "/media/projects/kotelnaya-tplus/02.webp",
    "thumb": "/media/projects/kotelnaya-tplus/02-t.webp",
-   "w": 960,
-   "h": 720,
+   "w": 1137,
+   "h": 853,
    "alt": "Куйбышевская отопительная котельная, ПАО Т+ — фото 2"
   },
   {
    "src": "/media/projects/kotelnaya-tplus/03.webp",
    "thumb": "/media/projects/kotelnaya-tplus/03-t.webp",
    "w": 960,
-   "h": 720,
-   "alt": "Куйбышевская отопительная котельная, ПАО Т+ — фото 3"
+   "h": 1280,
+   "alt": "Куйбышевская отопительная котельная, ПАО Т+ — фото 3",
+   "fit": "contain"
   },
   {
    "src": "/media/projects/kotelnaya-tplus/04.webp",
    "thumb": "/media/projects/kotelnaya-tplus/04-t.webp",
-   "w": 960,
-   "h": 720,
-   "alt": "Куйбышевская отопительная котельная, ПАО Т+ — фото 4"
+   "w": 449,
+   "h": 800,
+   "alt": "Куйбышевская отопительная котельная, ПАО Т+ — фото 4",
+   "fit": "contain"
   },
   {
    "src": "/media/projects/kotelnaya-tplus/05.webp",
    "thumb": "/media/projects/kotelnaya-tplus/05-t.webp",
-   "w": 960,
-   "h": 720,
+   "w": 598,
+   "h": 449,
    "alt": "Куйбышевская отопительная котельная, ПАО Т+ — фото 5"
   },
   {
    "src": "/media/projects/kotelnaya-tplus/06.webp",
    "thumb": "/media/projects/kotelnaya-tplus/06-t.webp",
-   "w": 960,
-   "h": 720,
-   "alt": "Куйбышевская отопительная котельная, ПАО Т+ — фото 6"
+   "w": 719,
+   "h": 1280,
+   "alt": "Куйбышевская отопительная котельная, ПАО Т+ — фото 6",
+   "fit": "contain"
   },
   {
    "src": "/media/projects/kotelnaya-tplus/07.webp",
    "thumb": "/media/projects/kotelnaya-tplus/07-t.webp",
-   "w": 1200,
-   "h": 900,
+   "w": 958,
+   "h": 719,
    "alt": "Куйбышевская отопительная котельная, ПАО Т+ — фото 7"
   },
   {
    "src": "/media/projects/kotelnaya-tplus/08.webp",
    "thumb": "/media/projects/kotelnaya-tplus/08-t.webp",
-   "w": 1200,
-   "h": 900,
-   "alt": "Куйбышевская отопительная котельная, ПАО Т+ — фото 8"
+   "w": 600,
+   "h": 800,
+   "alt": "Куйбышевская отопительная котельная, ПАО Т+ — фото 8",
+   "fit": "contain"
   },
   {
    "src": "/media/projects/kotelnaya-tplus/09.webp",
    "thumb": "/media/projects/kotelnaya-tplus/09-t.webp",
-   "w": 960,
-   "h": 720,
+   "w": 958,
+   "h": 719,
    "alt": "Куйбышевская отопительная котельная, ПАО Т+ — фото 9"
   },
   {
    "src": "/media/projects/kotelnaya-tplus/10.webp",
    "thumb": "/media/projects/kotelnaya-tplus/10-t.webp",
-   "w": 1200,
-   "h": 900,
+   "w": 958,
+   "h": 719,
    "alt": "Куйбышевская отопительная котельная, ПАО Т+ — фото 10"
   },
   {
    "src": "/media/projects/kotelnaya-tplus/11.webp",
    "thumb": "/media/projects/kotelnaya-tplus/11-t.webp",
-   "w": 1200,
-   "h": 900,
+   "w": 958,
+   "h": 719,
    "alt": "Куйбышевская отопительная котельная, ПАО Т+ — фото 11"
   },
   {
    "src": "/media/projects/kotelnaya-tplus/12.webp",
    "thumb": "/media/projects/kotelnaya-tplus/12-t.webp",
-   "w": 960,
-   "h": 720,
-   "alt": "Куйбышевская отопительная котельная, ПАО Т+ — фото 12"
+   "w": 449,
+   "h": 800,
+   "alt": "Куйбышевская отопительная котельная, ПАО Т+ — фото 12",
+   "fit": "contain"
   },
   {
    "src": "/media/projects/kotelnaya-tplus/13.webp",
    "thumb": "/media/projects/kotelnaya-tplus/13-t.webp",
-   "w": 1200,
-   "h": 900,
-   "alt": "Куйбышевская отопительная котельная, ПАО Т+ — фото 13"
+   "w": 720,
+   "h": 1280,
+   "alt": "Куйбышевская отопительная котельная, ПАО Т+ — фото 13",
+   "fit": "contain"
   },
   {
    "src": "/media/projects/kotelnaya-tplus/14.webp",
    "thumb": "/media/projects/kotelnaya-tplus/14-t.webp",
-   "w": 1200,
-   "h": 900,
+   "w": 958,
+   "h": 719,
    "alt": "Куйбышевская отопительная котельная, ПАО Т+ — фото 14"
+  },
+  {
+   "src": "/media/projects/kotelnaya-tplus/15.webp",
+   "thumb": "/media/projects/kotelnaya-tplus/15-t.webp",
+   "w": 719,
+   "h": 1280,
+   "alt": "Куйбышевская отопительная котельная, ПАО Т+ — фото 15",
+   "fit": "contain"
   }
  ]
 }
