@@ -45,7 +45,7 @@ def trim_uniform_border(im, white=242, tol=9):
     px = gray.load()
 
     def row_white(y):
-        # допускаем несколько небелых пикселей на строку — на случай мусора
+        # допускаем несколько небелых пикселей на строку – на случай мусора
         limit = max(1, int(w * 0.004))
         bad = 0
         for x in range(0, w, 2):
@@ -162,10 +162,10 @@ def main():
         loss = 1 - (framed.width * framed.height) / (w0 * h0)
         fit = "cover"
         if loss * 100 > args.max_loss:
-            # обрезать нельзя — оставляем кадр целиком и показываем в рамке на фоне темы
+            # обрезать нельзя – оставляем кадр целиком и показываем в рамке на фоне темы
             framed = im
             fit = "contain"
-            note = "кадр не 4:3 — показываем целиком на фоне темы"
+            note = "кадр не 4:3 – показываем целиком на фоне темы"
             report.append("  %02d  %-34s %dx%d  %s" % (n + 1, name[:34], framed.width, framed.height, note))
         else:
             report.append("  %02d  %-34s %dx%d -> %dx%d  поля %d%%" % (
@@ -183,7 +183,7 @@ def main():
             "src": "/media/projects/%s/%s" % (args.slug, big),
             "thumb": "/media/projects/%s/%s" % (args.slug, thumb),
             "w": size[0], "h": size[1],
-            "alt": "%s — фото %d" % (alt_base, n),
+            "alt": "%s – фото %d" % (alt_base, n),
         }
         if fit != "cover":
             photo["fit"] = fit
@@ -219,7 +219,7 @@ def main():
         ).convert("RGB")
         size = save_webp(im, os.path.join(out, "hero.webp"), 1600, 84)
         json.dump({"src": "/media/projects/%s/hero.webp" % args.slug, "w": size[0], "h": size[1],
-                   "alt": "%s — главный вид" % alt_base},
+                   "alt": "%s – главный вид" % alt_base},
                   open(hero_file, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         print("главный кадр: %s (%dx%d) -> hero.webp" % (os.path.basename(hero_src["src"]), size[0], size[1]))
 

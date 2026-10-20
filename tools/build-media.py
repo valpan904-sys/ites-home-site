@@ -33,13 +33,13 @@ ALBUMS = {
 }
 # локальные PDF: имя_файла_в_исходниках -> (имя_на_сайте, заголовок)
 DOCS = {
-    "doc-pao-tplus.pdf": ("case-kotelnaya-t-plus.pdf", "Куйбышевская отопительная котельная — кейс"),
-    "doc-3.pdf": ("case-spg-sabetta.pdf", "Завод по производству СПГ — кейс"),
-    "doc-1.pdf": ("case-kinel.pdf", "Канализационно-очистные сооружения, Кинель — кейс"),
-    "doc-2.pdf": ("case-bavly.pdf", "ЛПДС «Бавлы» — кейс"),
+    "doc-pao-tplus.pdf": ("case-kotelnaya-t-plus.pdf", "Куйбышевская отопительная котельная – кейс"),
+    "doc-3.pdf": ("case-spg-sabetta.pdf", "Завод по производству СПГ – кейс"),
+    "doc-1.pdf": ("case-kinel.pdf", "Канализационно-очистные сооружения, Кинель – кейс"),
+    "doc-2.pdf": ("case-bavly.pdf", "ЛПДС «Бавлы» – кейс"),
     "doc-presentation-2.1.pdf": ("presentation-company.pdf", "Презентация компании ИТЭС-Хоум"),
     "doc-4.pdf": ("project-management.pdf", "Как мы управляем проектами"),
-    "doc-presentation-2.pdf": ("presentation-monolit.pdf", "Монолитные работы — презентация"),
+    "doc-presentation-2.pdf": ("presentation-monolit.pdf", "Монолитные работы – презентация"),
 }
 MAX_PHOTO = 1600     # длинная сторона больших фото, px
 MAX_THUMB = 480      # превью для сетки
@@ -73,7 +73,7 @@ def build_albums():
     for slug, zip_name in ALBUMS.items():
         zpath = os.path.join(RAW, zip_name)
         if not os.path.exists(zpath):
-            report.append("  нет архива %s — пропуск" % zip_name)
+            report.append("  нет архива %s – пропуск" % zip_name)
             continue
         out_dir = os.path.join(GAL_DIR, slug)
         os.makedirs(out_dir, exist_ok=True)
@@ -95,7 +95,7 @@ def build_albums():
                 items.append({"src": "/media/projects/%s/%s" % (slug, big),
                               "thumb": "/media/projects/%s/%s" % (slug, thumb),
                               "w": w, "h": h,
-                              "alt": "%s — фото %d" % (ALT.get(slug, slug), n)})
+                              "alt": "%s – фото %d" % (ALT.get(slug, slug), n)})
         galleries[slug] = items
         size = sum(os.path.getsize(os.path.join(out_dir, f)) for f in os.listdir(out_dir))
         report.append("  %-16s фотографий: %-3d вес: %s" % (slug, len(items), kb(size)))
@@ -108,7 +108,7 @@ def build_docs():
     for src_name, (out_name, title) in DOCS.items():
         sp = os.path.join(RAW, src_name)
         if not os.path.exists(sp):
-            report.append("  нет файла %s — пропуск" % src_name)
+            report.append("  нет файла %s – пропуск" % src_name)
             continue
         shutil.copy2(sp, os.path.join(DOC_DIR, out_name))
         docs[src_name] = out_name

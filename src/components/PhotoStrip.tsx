@@ -1,8 +1,8 @@
 /**
  * Полоса фотографий объекта: кадры в одном формате идут в ряд на всю ширину
- * страницы (3–4 фото в видимой области). На самих кадрах никаких подписей —
+ * страницы (3–4 фото в видимой области). На самих кадрах никаких подписей –
  * чтобы не добавлять шума. Клик по фото открывает просмотр во весь экран:
- * подпись и стрелки вынесены за пределы фотографии, фон — по теме сайта.
+ * подпись и стрелки вынесены за пределы фотографии, фон – по теме сайта.
  */
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
@@ -55,7 +55,7 @@ export function PhotoStrip({ photos, title }: { photos: GalleryPhoto[]; title: s
     <div className="space-y-4">
       <div className="flex items-center justify-between gap-4">
         <p className="text-xs text-muted-foreground">
-          Все кадры в одном формате · нажмите на фото — просмотр во весь экран
+          Все кадры в одном формате · нажмите на фото – просмотр во весь экран
         </p>
         <div className="flex gap-2 shrink-0">
           <button
@@ -108,13 +108,13 @@ export function PhotoStrip({ photos, title }: { photos: GalleryPhoto[]; title: s
         ))}
       </div>
 
-      {/* Просмотр во весь экран: фото отдельно, подпись и стрелки — вне фотографии */}
+      {/* Просмотр во весь экран: фото отдельно, подпись и стрелки – вне фотографии */}
       {open !== null && (
         <div
           className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-sm flex flex-col"
           role="dialog"
           aria-modal="true"
-          aria-label={`${title} — просмотр фотографий`}
+          aria-label={`${title} – просмотр фотографий`}
           onClick={() => setOpen(null)}
         >
           <div
@@ -146,7 +146,7 @@ export function PhotoStrip({ photos, title }: { photos: GalleryPhoto[]; title: s
             />
           </div>
 
-          {/* Подпись к фото — под кадром, вне изображения */}
+          {/* Подпись к фото – под кадром, вне изображения */}
           <div
             className="flex items-center justify-center gap-4 sm:gap-6 px-5 h-20 sm:h-24 shrink-0"
             onClick={(e) => e.stopPropagation()}
@@ -160,7 +160,7 @@ export function PhotoStrip({ photos, title }: { photos: GalleryPhoto[]; title: s
             </button>
             <div className="text-center">
               <p className="text-sm">
-                {title} <span className="text-muted-foreground">— {open + 1} / {total}</span>
+                {title} <span className="text-muted-foreground">– {open + 1} / {total}</span>
               </p>
               <p className="text-xs text-muted-foreground mt-1">
                 стрелки на клавиатуре листают, Esc закрывает

@@ -1,5 +1,5 @@
 /**
- * Документы компании. Все файлы лежат на нашем домене — внешних ссылок нет.
+ * Документы компании. Все файлы лежат на нашем домене – внешних ссылок нет.
  * Размеры указаны для показа (пересчитываются скриптом tools/build-media.py).
  */
 export type SiteDocument = {
@@ -21,7 +21,7 @@ export const DOCUMENTS: SiteDocument[] = [
     title: "Сертификат дистрибьютера",
     file: "/cert.pdf",
     size: "198 КБ",
-    note: "ИТЭС-Хоум — официальный дистрибьютор керамогранита ТМ ESTIMA",
+    note: "ИТЭС-Хоум – официальный дистрибьютор керамогранита ТМ ESTIMA",
     group: "legal",
   },
   {
@@ -44,7 +44,7 @@ export const DOCUMENTS: SiteDocument[] = [
     group: "presentation",
   },
   {
-    title: "Монолитные работы — презентация",
+    title: "Монолитные работы – презентация",
     file: "/documents/presentation-monolit.pdf",
     size: "4,6 МБ",
     group: "presentation",

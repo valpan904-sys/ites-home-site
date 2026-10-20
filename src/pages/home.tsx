@@ -164,7 +164,7 @@ export default function Home() {
           viewport={{ once: true, margin: "-100px" }}
           variants={fadeUp}
         >
-          <p className="text-primary text-sm uppercase tracking-widest font-medium mb-8">— О компании</p>
+          <p className="text-primary text-sm uppercase tracking-widest font-medium mb-8">– О компании</p>
 
           {/* Grid: left = title+text+links, right = photo spanning full height */}
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 mb-8 sm:mb-16">
@@ -174,7 +174,7 @@ export default function Home() {
               </h1>
               <div className="space-y-5 text-muted-foreground leading-relaxed">
                 <p>
-                  ООО «ИТЭС-Хоум» входит в группу компаний ИТЭС. Выполняем строительно-монтажные и отделочные работы под ключ — от подготовки площадки до сдачи объекта.
+                  ООО «ИТЭС-Хоум» входит в группу компаний ИТЭС. Выполняем строительно-монтажные и отделочные работы под ключ – от подготовки площадки до сдачи объекта.
                 </p>
                 <p>
                   Переносим стандарты промышленного качества в гражданское строительство. Используем современные инструменты цифровизации и технологии искусственного интеллекта для управления проектами.
@@ -205,7 +205,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Photo — same height as left column, right side of image preferred */}
+            {/* Photo – same height as left column, right side of image preferred */}
             <div className="relative overflow-hidden min-h-[320px]">
               <img
                 src={slide2Bg}
@@ -217,7 +217,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Services — Mobile: 12×1 описание/фото в порядке, с анимацией */}
+          {/* Services – Mobile: 12×1 описание/фото в порядке, с анимацией */}
           <div className="md:hidden">
             {SERVICES.map((srv, i) => (
               <div key={i}>
@@ -252,7 +252,7 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Services — Desktop: 6×2 chess grid */}
+          {/* Services – Desktop: 6×2 chess grid */}
           <div
             className="hidden md:grid grid-cols-2"
             style={{ gridTemplateRows: `repeat(${SERVICES.length}, minmax(185px, auto))` }}
@@ -300,7 +300,7 @@ export default function Home() {
           </div>
         </motion.section>
 
-        {/* ПРОЕКТЫ — carousel step by 1, counter 1/6 to 6/6 */}
+        {/* ПРОЕКТЫ – carousel step by 1, counter 1/6 to 6/6 */}
         <motion.section
           id="projects"
           ref={projectsSectionRef}
@@ -311,11 +311,11 @@ export default function Home() {
           variants={fadeUp}
         >
           <div className="space-y-4 mb-10">
-            <p className="text-primary text-sm uppercase tracking-widest font-medium">— Проекты</p>
+            <p className="text-primary text-sm uppercase tracking-widest font-medium">– Проекты</p>
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">Реализованные объекты</h2>
           </div>
 
-          {/* Animated carousel — 3 visible, step by 1 */}
+          {/* Animated carousel – 3 visible, step by 1 */}
           <div
             className="overflow-hidden h-[600px] sm:h-[580px]"
             onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
@@ -379,7 +379,7 @@ export default function Home() {
                     </p>
                     <ul className="text-sm text-muted-foreground space-y-1.5 mt-4">
                       {project.items.filter(item => item !== "\u00a0").map((item, j) => (
-                        <li key={j}>— {item}</li>
+                        <li key={j}>– {item}</li>
                       ))}
                     </ul>
                     <div className="mt-4">
@@ -410,7 +410,7 @@ export default function Home() {
           </AnimatePresence>
           </div>
 
-          {/* Controls — bottom right, counter 1/6 to 6/6 */}
+          {/* Controls – bottom right, counter 1/6 to 6/6 */}
           <div className="flex justify-end items-center gap-3 mt-8">
             <span className="text-xs text-muted-foreground uppercase tracking-widest mr-2">
               {carouselIndex + 1} / {PROJECTS.length}
@@ -440,13 +440,13 @@ export default function Home() {
           viewport={{ once: true, margin: "-100px" }}
           variants={fadeUp}
         >
-          <p className="text-primary text-sm uppercase tracking-widest font-medium">— Партнёры</p>
+          <p className="text-primary text-sm uppercase tracking-widest font-medium">– Партнёры</p>
 
           <div className="grid md:grid-cols-2 gap-px bg-border">
             <div className="bg-background py-6 px-6 md:py-8 md:pl-0 md:pr-12 flex flex-col">
               <h3 className="text-base font-bold text-foreground tracking-wider mb-3">ESTIMA</h3>
               <p className="text-sm text-muted-foreground mb-1 min-h-[20px]">Первый производитель керамогранита в России</p>
-              <p className="text-sm text-muted-foreground mb-5 min-h-[20px]">ИТЭС-Хоум — официальный дистрибьютор керамогранита ТМ ESTIMA</p>
+              <p className="text-sm text-muted-foreground mb-5 min-h-[20px]">ИТЭС-Хоум – официальный дистрибьютор керамогранита ТМ ESTIMA</p>
               <a href="https://estima.ru" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-primary hover:text-foreground transition-colors text-sm font-medium group mt-auto">
                 estima.ru <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
@@ -472,7 +472,7 @@ export default function Home() {
           viewport={{ once: true, margin: "-100px" }}
           variants={fadeUp}
         >
-          <p className="text-primary text-sm uppercase tracking-widest font-medium">— Документы</p>
+          <p className="text-primary text-sm uppercase tracking-widest font-medium">– Документы</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
             {/* Выписка СРО */}
             <div className="flex flex-col gap-4">
@@ -484,7 +484,7 @@ export default function Home() {
               >
                 <img
                   src={docSro}
-                  alt="Выписка СРО — первая страница"
+                  alt="Выписка СРО – первая страница"
                   loading="lazy"
                   decoding="async"
                   className="w-full object-cover"
@@ -513,7 +513,7 @@ export default function Home() {
               >
                 <img
                   src={docCert}
-                  alt="Сертификат дистрибьютера — первая страница"
+                  alt="Сертификат дистрибьютера – первая страница"
                   loading="lazy"
                   decoding="async"
                   className="w-full object-cover"
@@ -543,7 +543,7 @@ export default function Home() {
           variants={fadeUp}
         >
           <div className="space-y-4 max-w-3xl">
-            <p className="text-primary text-sm uppercase tracking-widest font-medium">— Финансирование</p>
+            <p className="text-primary text-sm uppercase tracking-widest font-medium">– Финансирование</p>
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground leading-tight">
               Специальные условия финансирования
             </h2>
@@ -591,7 +591,7 @@ export default function Home() {
           viewport={{ once: true, margin: "-100px" }}
           variants={fadeUp}
         >
-          <p className="text-primary text-sm uppercase tracking-widest font-medium mb-4">— Контакты</p>
+          <p className="text-primary text-sm uppercase tracking-widest font-medium mb-4">– Контакты</p>
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground mb-8 sm:mb-12">Свяжитесь с нами</h2>
 
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
@@ -625,7 +625,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right — form */}
+            {/* Right – form */}
             <div>
               <p className="text-primary text-xs uppercase tracking-widest font-medium mb-7">Форма обратной связи</p>
 
@@ -646,7 +646,7 @@ export default function Home() {
                     <label htmlFor="website">Website</label>
                     <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" value={_hpField} onChange={e => _setHpField(e.target.value)} />
                   </div>
-                  {/* 2-column: fields left, textarea right — equal height */}
+                  {/* 2-column: fields left, textarea right – equal height */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 items-stretch">
                     {/* Left sub-column */}
                     <div className="flex flex-col gap-4">
@@ -673,7 +673,7 @@ export default function Home() {
                       </div>
                     </div>
 
-                    {/* Right sub-column — textarea full height */}
+                    {/* Right sub-column – textarea full height */}
                     <div className="flex flex-col">
                       <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1.5" htmlFor="message">Текст обращения</label>
                       <textarea

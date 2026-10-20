@@ -41,7 +41,7 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
         <Link href={url("/")} className="flex items-center shrink-0" aria-label={COMPANY.brand}>
           <img
             src={url(theme === "dark" ? logoForDark : logoForLight)}
-            alt={`${COMPANY.brand} — ${COMPANY.tagline}`}
+            alt={`${COMPANY.brand} – ${COMPANY.tagline}`}
             className="h-8 w-auto object-contain"
             draggable={false}
           />

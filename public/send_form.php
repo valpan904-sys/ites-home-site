@@ -1,16 +1,16 @@
 <?php
 /**
- * ИТЭС-Хоум — обработчик формы обратной связи
+ * ИТЭС-Хоум – обработчик формы обратной связи
  * Отправка через Яндекс SMTP (PHPMailer)
  *
- * Зависимость: PHPMailer — папка phpmailer/ рядом с этим файлом:
+ * Зависимость: PHPMailer – папка phpmailer/ рядом с этим файлом:
  *   phpmailer/PHPMailer.php
  *   phpmailer/SMTP.php
  *   phpmailer/Exception.php
  *
  * Учётные данные SMTP берутся из файла ВНЕ веб-корня:
  *   ../../secrets/mail_credentials.php  (права 600)
- * Если файла нет или пароль пуст — используются значения ниже (прежний ящик).
+ * Если файла нет или пароль пуст – используются значения ниже (прежний ящик).
  */
 
 // ─── Настройки (запасной вариант) ─────────────────────────────────────────────
@@ -66,7 +66,7 @@ if (!$body) {
 }
 
 // ── Спам-защита: Honeypot ─────────────────────────────────────────────────────
-// Поле website скрыто CSS — человек не видит и не заполняет; бот заполняет.
+// Поле website скрыто CSS – человек не видит и не заполняет; бот заполняет.
 if (!empty($body['website'])) {
     // Притворяемся успехом, чтобы не раскрывать факт обнаружения
     http_response_code(200);
@@ -197,7 +197,7 @@ try {
         $mail->addReplyTo($email, $name);
     }
 
-    $mail->Subject = 'Заявка с сайта ИТЭС-Хоум — ' . $name;
+    $mail->Subject = 'Заявка с сайта ИТЭС-Хоум – ' . $name;
     $mail->isHTML(true);
     $mail->Body = '
 <!DOCTYPE html>
@@ -212,16 +212,16 @@ try {
     <tr><td style="padding:8px 12px;font-weight:bold;background:#f4f4f4">Телефон</td>
         <td style="padding:8px 12px;background:#fafafa"><a href="tel:' . htmlspecialchars($phone) . '" style="color:#00b4c8">' . htmlspecialchars($phone) . '</a></td></tr>
     <tr><td style="padding:8px 12px;font-weight:bold;background:#f4f4f4">Email</td>
-        <td style="padding:8px 12px;background:#fafafa">' . ($email ? '<a href="mailto:' . htmlspecialchars($email) . '" style="color:#00b4c8">' . htmlspecialchars($email) . '</a>' : '—') . '</td></tr>
+        <td style="padding:8px 12px;background:#fafafa">' . ($email ? '<a href="mailto:' . htmlspecialchars($email) . '" style="color:#00b4c8">' . htmlspecialchars($email) . '</a>' : '–') . '</td></tr>
     <tr><td style="padding:8px 12px;font-weight:bold;background:#f4f4f4;vertical-align:top">Сообщение</td>
-        <td style="padding:8px 12px;background:#fafafa">' . nl2br(htmlspecialchars($message ?: '—')) . '</td></tr>
+        <td style="padding:8px 12px;background:#fafafa">' . nl2br(htmlspecialchars($message ?: '–')) . '</td></tr>
   </table>
   <p style="margin-top:24px;font-size:12px;color:#999">Письмо отправлено автоматически с сайта home.ltd-ites.com</p>
 </body>
 </html>';
 
     $mail->AltBody = "Новая заявка с сайта ИТЭС-Хоум\n\n"
-        . "Имя: $name\nТелефон: $phone\nEmail: " . ($email ?: '—') . "\nСообщение: " . ($message ?: '—');
+        . "Имя: $name\nТелефон: $phone\nEmail: " . ($email ?: '–') . "\nСообщение: " . ($message ?: '–');
 
     $mail->send();
     echo json_encode(['ok' => true]);

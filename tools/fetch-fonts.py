@@ -21,7 +21,7 @@ CSS_OUT = os.path.join(SITE, "src", "styles", "fonts.css")
 
 CSS_URL = ("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700"
            "&display=swap&subset=cyrillic,cyrillic-ext,latin,latin-ext")
-# современный User-Agent — иначе Google отдаёт ttf вместо woff2
+# современный User-Agent – иначе Google отдаёт ttf вместо woff2
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
       "Chrome/126.0.0.0 Safari/537.36")
 
@@ -76,7 +76,7 @@ def main() -> int:
         print("  %-28s %6.1f КБ  (подмножество %s)" % (name, size / 1024, subset))
 
     header = (
-        "/* Шрифт Inter, размещённый локально. Файл создаётся скриптом tools/fetch-fonts.py —\n"
+        "/* Шрифт Inter, размещённый локально. Файл создаётся скриптом tools/fetch-fonts.py –\n"
         "   править вручную не нужно, при обновлении шрифта скрипт перезапишет его целиком. */\n\n"
     )
     with open(CSS_OUT, "w", encoding="utf-8", newline="\n") as fh:

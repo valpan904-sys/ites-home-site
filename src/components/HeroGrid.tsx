@@ -22,7 +22,7 @@ export function HeroGrid() {
   return (
     <div className="relative w-full h-screen bg-background overflow-hidden flex flex-col">
 
-      {/* Dot grid background — theme adaptive */}
+      {/* Dot grid background – theme adaptive */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -33,7 +33,7 @@ export function HeroGrid() {
         }}
       />
 
-      {/* Grid Lines — all identical 1px, GPU-rendered to avoid sub-pixel differences */}
+      {/* Grid Lines – all identical 1px, GPU-rendered to avoid sub-pixel differences */}
       <motion.div
         className="absolute w-full bg-[#00b4c8]/50 top-[33.33%] pointer-events-none"
         style={{ height: "2px", transformOrigin: "left center", backfaceVisibility: "hidden" }}
@@ -63,7 +63,7 @@ export function HeroGrid() {
         transition={{ delay: 2.3, duration: 0.6, ease: "easeInOut" }}
       />
 
-      {/* Logo — top-left cell, half cell height */}
+      {/* Logo – top-left cell, half cell height */}
       <motion.div
         className="absolute top-[16px] left-[16px] sm:top-[40px] sm:left-[48px] z-30"
         initial={{ opacity: 0, y: 20 }}
@@ -81,7 +81,7 @@ export function HeroGrid() {
         />
       </motion.div>
 
-      {/* Theme toggle — z-30 always on top */}
+      {/* Theme toggle – z-30 always on top */}
       <motion.button
         className="absolute top-[16px] right-[16px] sm:top-[40px] sm:right-[48px] z-30 w-10 h-10 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors border border-border/50 hover:border-primary/50 bg-background/50 backdrop-blur-sm"
         initial={{ opacity: 0 }}
@@ -94,14 +94,14 @@ export function HeroGrid() {
         {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
       </motion.button>
 
-      {/* Nav Grid — pointer-events-none on wrapper, auto on cells */}
+      {/* Nav Grid – pointer-events-none on wrapper, auto on cells */}
       <div className="w-full h-full grid grid-cols-3 grid-rows-3 relative z-10 pointer-events-none">
-        {/* Row 1 — empty */}
+        {/* Row 1 – empty */}
         <div />
         <div />
         <div />
 
-        {/* Row 2 — nav cells */}
+        {/* Row 2 – nav cells */}
         {NAV_ITEMS.map((item, idx) => (
           <motion.div
             key={item.id}
@@ -121,7 +121,7 @@ export function HeroGrid() {
           </motion.div>
         ))}
 
-        {/* Row 3 — empty */}
+        {/* Row 3 – empty */}
         <div />
         <div />
         <div />

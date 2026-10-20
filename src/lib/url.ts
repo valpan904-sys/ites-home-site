@@ -14,7 +14,7 @@ export const url = (path: string): string => {
     return path;
   }
   // Значение уже содержит префикс публикации (например адрес картинки, подставленный
-  // сборщиком) — возвращаем как есть, иначе префикс удвоится.
+  // сборщиком) – возвращаем как есть, иначе префикс удвоится.
   if (BASE && (path === BASE || path.startsWith(BASE + "/"))) return path;
   return BASE + (path.startsWith("/") ? path : "/" + path);
 };

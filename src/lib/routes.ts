@@ -6,7 +6,7 @@ import { PROJECTS } from "@/content/projects";
 import { COMPANY, SITE_URL, SOCIALS } from "@/content/site";
 
 export type RouteMeta = {
-  /** Путь без завершающего слэша — так его понимает роутер */
+  /** Путь без завершающего слэша – так его понимает роутер */
   path: string;
   title: string;
   description: string;
@@ -17,7 +17,7 @@ export type RouteMeta = {
   noindex?: boolean;
 };
 
-const clamp = (s: string, n = 158) => (s.length <= n ? s : s.slice(0, n - 1).replace(/[\s,;:.—-]+$/, "") + "…");
+const clamp = (s: string, n = 158) => (s.length <= n ? s : s.slice(0, n - 1).replace(/[\s,;:.–-]+$/, "") + "…");
 
 const organisation = () => ({
   "@type": "GeneralContractor",
@@ -56,9 +56,9 @@ const organisation = () => ({
 
 export const HOME_ROUTE: RouteMeta = {
   path: "/",
-  title: "ИТЭС-Хоум — строительно-монтажная компания в Самаре",
+  title: "ИТЭС-Хоум – строительно-монтажная компания в Самаре",
   description:
-    "ООО «ИТЭС-Хоум» — строительно-монтажная компания полного цикла в Самаре. Отделочные работы, электромонтаж, генподряд, монолитные работы. Рассрочка и кредит. Тел.: 8 (846) 333-11-88.",
+    "ООО «ИТЭС-Хоум» – строительно-монтажная компания полного цикла в Самаре. Отделочные работы, электромонтаж, генподряд, монолитные работы. Рассрочка и кредит. Тел.: 8 (846) 333-11-88.",
   changefreq: "monthly",
   priority: "1.0",
   jsonLd: [
@@ -78,7 +78,7 @@ export const HOME_ROUTE: RouteMeta = {
 /** Страницы объектов: только те, у которых есть своя страница */
 export const PROJECT_ROUTES: RouteMeta[] = PROJECTS.filter((p) => p.page).map((p) => ({
   path: `/projects/${p.slug}`,
-  title: `${p.title} — ${p.client} | Объекты ИТЭС-Хоум`,
+  title: `${p.title} – ${p.client} | Объекты ИТЭС-Хоум`,
   description: clamp(
     `${p.title}, ${p.location}. Заказчик: ${p.client}. ${(p.scope ?? [])
       .flatMap((s) => s.works)
@@ -91,7 +91,7 @@ export const PROJECT_ROUTES: RouteMeta[] = PROJECTS.filter((p) => p.page).map((p
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      name: `${p.title} — ${p.client}`,
+      name: `${p.title} – ${p.client}`,
       url: `${SITE_URL}/projects/${p.slug}/`,
       description: clamp(p.about?.[0] ?? "", 300),
       isPartOf: { "@id": SITE_URL + "/#website" },
@@ -110,7 +110,7 @@ export const PROJECT_ROUTES: RouteMeta[] = PROJECTS.filter((p) => p.page).map((p
 
 export const NOT_FOUND_ROUTE: RouteMeta = {
   path: "/404",
-  title: "Страница не найдена — ИТЭС-Хоум",
+  title: "Страница не найдена – ИТЭС-Хоум",
   description: "Запрошенная страница не найдена. Вернитесь на главную страницу сайта ИТЭС-Хоум.",
   noindex: true,
 };

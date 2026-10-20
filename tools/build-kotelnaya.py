@@ -3,9 +3,9 @@
 Готовит фотогалерею объекта «Куйбышевская отопительная котельная» (ПАО Т+).
 
 Источник: папка заказчика с тремя наборами одних и тех же кадров
-  «16х9»     — кадры 1280x720
-  «Карусель» — те же кадры в исходных пропорциях, часть в большем разрешении
-  корень     — исходники
+  «16х9»     – кадры 1280x720
+  «Карусель» – те же кадры в исходных пропорциях, часть в большем разрешении
+  корень     – исходники
 Для каждого кадра берётся версия с наибольшим разрешением в горизонтальной
 ориентации, затем кадр приводится к пропорции 4:3 (обрезка по центру).
 
@@ -34,11 +34,11 @@ ALT = "Куйбышевская отопительная котельная, П�
 def crop_to_ratio(im, ratio=RATIO):
     """Обрезка по центру до нужной пропорции."""
     w, h = im.size
-    if w / h > ratio:            # шире — обрезаем бока
+    if w / h > ratio:            # шире – обрезаем бока
         new_w = int(h * ratio)
         left = (w - new_w) // 2
         return im.crop((left, 0, left + new_w, h))
-    new_h = int(w / ratio)       # выше — обрезаем сверху и снизу
+    new_h = int(w / ratio)       # выше – обрезаем сверху и снизу
     top = (h - new_h) // 2
     return im.crop((0, top, w, top + new_h))
 
@@ -61,14 +61,14 @@ def main():
     set169 = {os.path.splitext(os.path.basename(p))[0].rstrip("_"): p for p in glob.glob(SRC + r"\16х9\*")}
     setkar = {os.path.splitext(os.path.basename(p))[0]: p for p in glob.glob(SRC + r"\Карусель\*")}
 
-    # hero — титульный кадр (без обрезки, широкий баннер)
+    # hero – титульный кадр (без обрезки, широкий баннер)
     hero_src = set169.get("Титул") or setkar.get("Титул")
     hero = None
     if hero_src:
         im = ImageOps.exif_transpose(Image.open(hero_src)).convert("RGB")
         size = save_webp(im, os.path.join(OUT, "hero.webp"), 1280, Q_BIG)
         hero = {"src": "/media/projects/kotelnaya-tplus/hero.webp", "w": size[0], "h": size[1],
-                "alt": ALT + " — главный вид"}
+                "alt": ALT + " – главный вид"}
         print("  hero.webp            %dx%d  %5.1f КБ" % (size[0], size[1], os.path.getsize(os.path.join(OUT, "hero.webp")) / 1024))
 
     photos, report = [], []
@@ -94,7 +94,7 @@ def main():
         photos.append({"src": "/media/projects/kotelnaya-tplus/" + name,
                        "thumb": "/media/projects/kotelnaya-tplus/" + thumb,
                        "w": big_size[0], "h": big_size[1],
-                       "alt": "%s — фото %d" % (ALT, n)})
+                       "alt": "%s – фото %d" % (ALT, n)})
         report.append("  %-22s -> %-12s %dx%d  %5.1f КБ" % (
             os.path.basename(src)[:22], name, big_size[0], big_size[1],
             os.path.getsize(os.path.join(OUT, name)) / 1024))

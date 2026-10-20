@@ -19,7 +19,7 @@ const jsonLdString = (items: unknown[]) =>
     "\\u003c"
   );
 
-/** HTML-блок head для конкретной страницы — подставляется при сборке */
+/** HTML-блок head для конкретной страницы – подставляется при сборке */
 export function headHtml(meta: RouteMeta): string {
   const url = pageUrl(meta.path);
   const og = absolute(meta.ogImage);

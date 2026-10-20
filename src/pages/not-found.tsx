@@ -9,10 +9,10 @@ export default function NotFound() {
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <SiteHeader solid />
       <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-32 sm:pt-40 pb-20 w-full flex-1 space-y-8">
-        <p className="text-primary text-sm uppercase tracking-widest font-medium">— Ошибка 404</p>
+        <p className="text-primary text-sm uppercase tracking-widest font-medium">– Ошибка 404</p>
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight">Страница не найдена</h1>
         <p className="text-muted-foreground leading-relaxed">
-          Возможно, адрес введён с опечаткой или страница переехала. Вернитесь на главную или позвоните нам —{" "}
+          Возможно, адрес введён с опечаткой или страница переехала. Вернитесь на главную или позвоните нам –{" "}
           <a href={COMPANY.phoneHref} className="text-primary hover:text-foreground transition-colors">
             {COMPANY.phone}
           </a>
