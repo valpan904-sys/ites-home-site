@@ -3,6 +3,7 @@
  * отопительной котельной (ПАО Т+); остальные объекты ведут на внешние альбомы
  * до появления своих страниц.
  */
+import { useEffect } from "react";
 import { Link, useParams } from "wouter";
 import { ArrowLeft, ArrowUpRight, Phone } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
@@ -15,6 +16,13 @@ import NotFound from "./not-found";
 
 export default function ProjectPage() {
   const { slug } = useParams<{ slug: string }>();
+
+  // страница объекта всегда открывается сверху: иначе переход из карточки
+  // на главной оставляет браузер на прежней прокрутке
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [slug]);
+
   const project = projectBySlug(slug ?? "");
   if (!project || !project.page) return <NotFound />;
 
@@ -27,7 +35,7 @@ export default function ProjectPage() {
 
       {/* Заглавное фото и название объекта */}
       <section className="relative">
-        <div className="relative h-[44vh] min-h-[300px] sm:h-[54vh] sm:min-h-[400px] max-h-[640px] overflow-hidden">
+        <div className="relative h-[52vh] min-h-[340px] sm:h-[64vh] sm:min-h-[460px] max-h-[780px] overflow-hidden">
           {hero ? (
             <img
               src={url(hero.src)}

@@ -67,37 +67,40 @@ export function PhotoStrip({ photos, title }: { photos: GalleryPhoto[]; title: s
         </button>
       </div>
 
-      {/* Кадры в ряд: 2 на телефоне, 3 на планшете, 4 на большом экране. Без подписей. */}
+      {/* Кадры одной высоты идут в ряд: ширина у каждого своя по пропорции кадра,
+          поэтому рябь от обрезки 4:3 пропадает. Подписей на кадрах нет. */}
       <div
         ref={scroller}
-        className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="h-[190px] sm:h-[230px] lg:h-[260px] overflow-x-auto overflow-y-hidden snap-x snap-mandatory pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         onTouchStart={(e) => swipeStart(e.touches[0].clientX)}
         onTouchEnd={(e) => swipeEnd(e.changedTouches[0].clientX)}
       >
-        {photos.map((p, i) => (
-          <button
-            key={p.src}
-            onClick={() => setOpen(i)}
-            aria-label={`Открыть фото ${i + 1} во весь экран`}
-            className="snap-start shrink-0 aspect-[4/3] basis-[calc(50%-6px)] sm:basis-[calc(33.333%-8px)] lg:basis-[calc(25%-9px)] overflow-hidden border border-border bg-muted relative group/photo cursor-zoom-in"
-          >
-            <img
-              src={url(p.thumb)}
-              alt={p.alt}
-              width={p.w}
-              height={p.h}
-              loading="lazy"
-              decoding="async"
-              className={[
-                "w-full h-full transition-transform duration-700 ease-out group-hover/photo:scale-105",
-                p.fit === "contain" ? "object-contain" : "object-cover",
-              ].join(" ")}
-            />
-            <span className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover/photo:opacity-100 transition-opacity">
-              <Maximize2 className="w-5 h-5 text-white" />
-            </span>
-          </button>
-        ))}
+        <div className="flex h-full gap-3">
+          {photos.map((p, i) => (
+            <button
+              key={p.src}
+              onClick={() => setOpen(i)}
+              aria-label={`Открыть фото ${i + 1} во весь экран`}
+              className="snap-start shrink-0 h-full aspect-[4/3] overflow-hidden border border-border bg-muted relative group/photo cursor-zoom-in"
+            >
+              <img
+                src={url(p.thumb)}
+                alt={p.alt}
+                width={p.w}
+                height={p.h}
+                loading="lazy"
+                decoding="async"
+                className={[
+                  "w-full h-full transition-transform duration-700 ease-out group-hover/photo:scale-105",
+                  p.fit === "contain" ? "object-contain" : "object-cover",
+                ].join(" ")}
+              />
+              <span className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover/photo:opacity-100 transition-opacity">
+                <Maximize2 className="w-5 h-5 text-white" />
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Просмотр во весь экран: стрелки по бокам, подпись под кадром */}

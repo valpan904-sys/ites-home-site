@@ -24,7 +24,7 @@ import json
 import os
 import sys
 
-from PIL import Image, ImageOps
+from PIL import Image, ImageFilter, ImageOps
 
 PROJ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EXTS = (".jpg", ".jpeg", ".png", ".webp", ".bmp", ".tif", ".tiff")
@@ -100,10 +100,17 @@ def crop_to_ratio(im, ratio=RATIO):
     return im.crop((0, top, w, top + new_h))
 
 
-def save_webp(im, path, width, quality):
+def save_webp(im, path, width, quality, upscale_to=None):
+    """Пишет WebP нужной ширины. Если кадр меньше нужного, увеличивает его
+    (не более чем в 1.8 раза) с аккуратным повышением резкости."""
     if im.width > width:
         k = width / im.width
         im = im.resize((width, max(1, round(im.height * k))), RESAMPLE)
+    elif upscale_to and im.width < upscale_to:
+        k = min(upscale_to / im.width, 1.8)
+        if k > 1.05:
+            im = im.resize((max(1, round(im.width * k)), max(1, round(im.height * k))), RESAMPLE)
+            im = im.filter(ImageFilter.UnsharpMask(radius=1.8, percent=90, threshold=4))
     im.save(path, "WEBP", quality=quality, method=6)
     return im.size
 
@@ -180,8 +187,8 @@ def main():
         n += 1
         big, thumb = "%02d.webp" % n, "%02d-t.webp" % n
         if not args.dry_run:
-            size = save_webp(framed, os.path.join(out, big), LONG_W, Q_BIG)
-            save_webp(framed, os.path.join(out, thumb), THUMB_W, Q_THUMB)
+            size = save_webp(framed, os.path.join(out, big), LONG_W, Q_BIG, upscale_to=LONG_W)
+            save_webp(framed, os.path.join(out, thumb), THUMB_W, Q_THUMB, upscale_to=THUMB_W)
         else:
             size = framed.size
 

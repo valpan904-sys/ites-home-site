@@ -26,15 +26,20 @@ HERO_FILES = {"kotelnaya-tplus": "hero-kotelnaya.json"}
 RESAMPLE = getattr(getattr(Image, "Resampling", Image), "LANCZOS")
 
 
-def crop_to_ratio(im, ratio):
-    """Обрезка по центру до нужной пропорции (широкий баннер)."""
+def crop_to_ratio(im, ratio, top_bias=0.45):
+    """Обрезка по центру до нужной пропорции (широкий баннер).
+
+    top_bias задаёт, какую часть «лишней» высоты срезать сверху: 0 – оставить верх
+    кадра, 1 – оставить низ. Для панорам промышленных объектов обычно нужен низ
+    (здание и площадка), а не небо.
+    """
     w, h = im.size
     if w / h > ratio:                     # шире нужного – режем бока
         new_w = int(h * ratio)
         left = (w - new_w) // 2
         return im.crop((left, 0, left + new_w, h))
     new_h = int(w / ratio)                # выше нужного – режем верх и низ
-    top = int((h - new_h) * 0.45)         # чуть выше центра: небо обычно не главное
+    top = int((h - new_h) * top_bias)
     return im.crop((0, top, w, top + new_h))
 
 
@@ -63,6 +68,7 @@ def main():
     ap.add_argument("src", help="исходный кадр")
     ap.add_argument("slug", help="адрес страницы объекта, например kotelnaya-tplus")
     ap.add_argument("--ratio", type=float, default=2.4, help="пропорция баннера (ширина/высота), по умолчанию 2.4")
+    ap.add_argument("--top-bias", type=float, default=0.45, help="какую часть лишней высоты срезать сверху: 0 – верх кадра, 1 – низ")
     ap.add_argument("--width", type=int, default=2560, help="ширина готового файла, по умолчанию 2560")
     ap.add_argument("--sharpen", type=int, default=90, help="сила повышения резкости, по умолчанию 90")
     ap.add_argument("--quality", type=int, default=88, help="качество WebP, по умолчанию 88")
@@ -78,7 +84,7 @@ def main():
 
     im = ImageOps.exif_transpose(Image.open(args.src)).convert("RGB")
     w0, h0 = im.size
-    framed = crop_to_ratio(im, args.ratio)
+    framed = crop_to_ratio(im, args.ratio, args.top_bias)
     before = sharpness(framed)
 
     big = upscale(framed, args.width)
