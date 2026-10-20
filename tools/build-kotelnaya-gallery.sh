@@ -26,7 +26,7 @@ cd "$PROJ"
 echo
 echo "=== заглавный кадр: шире и ниже, чтобы в баннер попало здание, а не небо ==="
 "$PY" tools/upscale-hero.py "$SRC/32s6DuGg4a8.jpg" kotelnaya-tplus \
-  --ratio 1.9 --top-bias 0.78 --width 2560 --sharpen 100 \
+  --ratio 2.8 --top-bias 1.0 --width 2560 --sharpen 100 \
   --alt "Куйбышевская отопительная котельная, ПАО Т+"
 
 echo
