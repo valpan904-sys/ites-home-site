@@ -27,7 +27,7 @@ export default function ProjectPage() {
 
       {/* Заглавное фото и название объекта */}
       <section className="relative">
-        <div className="relative h-[38vh] min-h-[260px] sm:h-[46vh] sm:min-h-[320px] max-h-[520px] overflow-hidden">
+        <div className="relative h-[44vh] min-h-[300px] sm:h-[54vh] sm:min-h-[400px] max-h-[640px] overflow-hidden">
           {hero ? (
             <img
               src={url(hero.src)}
@@ -43,9 +43,15 @@ export default function ProjectPage() {
           ) : (
             <img src={url(project.photo)} alt={project.title} className="absolute inset-0 h-full w-full object-cover" />
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-6 sm:pb-9 text-white">
+
+          {/* лёгкое затемнение, чтобы текст читался на любом кадре */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-transparent" />
+
+          {/* нижняя треть растворяется в фоне страницы – фоновый цвет берётся из темы */}
+          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background via-background/80 to-transparent" />
+
+          <div className="absolute inset-x-0 bottom-1/3 pb-4 sm:pb-6">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 text-white">
               <p className="text-xs uppercase tracking-widest text-white/70 mb-2">
                 {project.client} · {project.location}
               </p>
