@@ -23,6 +23,8 @@ export type GalleryPhoto = {
   w: number;
   h: number;
   alt: string;
+  /** Подпись кадра из презентации заказчика */
+  caption?: string;
   /** contain – кадр не 4:3, показываем целиком на фоне темы */
   fit?: "cover" | "contain";
 };

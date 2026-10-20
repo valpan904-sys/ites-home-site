@@ -1,8 +1,9 @@
 /**
  * Полоса фотографий объекта: кадры в одном формате идут в ряд на всю ширину
- * страницы (3–4 фото в видимой области). На самих кадрах никаких подписей –
- * чтобы не добавлять шума. Клик по фото открывает просмотр во весь экран:
- * подпись и стрелки вынесены за пределы фотографии, фон – по теме сайта.
+ * страницы (3–4 фото в видимой области), пролистываются стрелками.
+ * На самих кадрах подписей нет – чтобы не добавлять шума.
+ * Клик по фото открывает просмотр во весь экран: стрелки по бокам, подпись
+ * под кадром, фон – по теме сайта.
  */
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
@@ -51,34 +52,25 @@ export function PhotoStrip({ photos, title }: { photos: GalleryPhoto[]; title: s
     startX.current = null;
   };
 
+  const pill =
+    "w-10 h-10 border border-border hover:border-primary flex items-center justify-center transition-colors";
+
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between gap-4">
-        <p className="text-xs text-muted-foreground">
-          Все кадры в одном формате · нажмите на фото – просмотр во весь экран
-        </p>
-        <div className="flex gap-2 shrink-0">
-          <button
-            onClick={() => nudge(-1)}
-            aria-label="Предыдущие фото"
-            className="w-10 h-10 border border-border hover:border-primary flex items-center justify-center transition-colors"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={() => nudge(1)}
-            aria-label="Следующие фото"
-            className="w-10 h-10 border border-border hover:border-primary flex items-center justify-center transition-colors"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </div>
+    <div className="space-y-3">
+      {/* Стрелки пролистывания полосы */}
+      <div className="flex justify-end gap-2">
+        <button onClick={() => nudge(-1)} aria-label="Предыдущие фото" className={pill}>
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+        <button onClick={() => nudge(1)} aria-label="Следующие фото" className={pill}>
+          <ChevronRight className="w-5 h-5" />
+        </button>
       </div>
 
       {/* Кадры в ряд: 2 на телефоне, 3 на планшете, 4 на большом экране. Без подписей. */}
       <div
         ref={scroller}
-        className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2"
+        className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         onTouchStart={(e) => swipeStart(e.touches[0].clientX)}
         onTouchEnd={(e) => swipeEnd(e.changedTouches[0].clientX)}
       >
@@ -108,72 +100,62 @@ export function PhotoStrip({ photos, title }: { photos: GalleryPhoto[]; title: s
         ))}
       </div>
 
-      {/* Просмотр во весь экран: фото отдельно, подпись и стрелки – вне фотографии */}
+      {/* Просмотр во весь экран: стрелки по бокам, подпись под кадром */}
       {open !== null && (
         <div
-          className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-sm flex flex-col"
+          className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
           aria-label={`${title} – просмотр фотографий`}
           onClick={() => setOpen(null)}
+          onTouchStart={(e) => swipeStart(e.touches[0].clientX)}
+          onTouchEnd={(e) => swipeEnd(e.changedTouches[0].clientX)}
         >
-          <div
-            className="flex items-center justify-between px-5 sm:px-8 h-14 sm:h-16 shrink-0"
-            onClick={(e) => e.stopPropagation()}
+          <button
+            onClick={() => setOpen(null)}
+            aria-label="Закрыть"
+            className="absolute top-5 right-5 text-muted-foreground hover:text-foreground transition-colors p-2 z-20"
           >
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">Фотографии объекта</p>
-            <button
-              onClick={() => setOpen(null)}
-              aria-label="Закрыть"
-              className="text-muted-foreground hover:text-foreground transition-colors p-2 -mr-2"
-            >
-              <X className="w-6 h-6" />
-            </button>
-          </div>
+            <X className="w-6 h-6" />
+          </button>
 
-          <div
-            className="flex-1 min-h-0 flex items-center justify-center px-4 py-2"
-            onTouchStart={(e) => swipeStart(e.touches[0].clientX)}
-            onTouchEnd={(e) => swipeEnd(e.changedTouches[0].clientX)}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              step(-1);
+            }}
+            aria-label="Предыдущее фото"
+            className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 w-11 h-11 border border-border hover:border-primary bg-background/70 flex items-center justify-center transition-colors z-20"
           >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              step(1);
+            }}
+            aria-label="Следующее фото"
+            className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-11 h-11 border border-border hover:border-primary bg-background/70 flex items-center justify-center transition-colors z-20"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+
+          <figure className="h-full w-full flex flex-col items-center justify-center gap-4 px-6 sm:px-24 py-16">
             <img
               src={url(photos[open].src)}
               alt={photos[open].alt}
               width={photos[open].w}
               height={photos[open].h}
               onClick={(e) => e.stopPropagation()}
-              className="max-h-full max-w-full object-contain"
+              className="max-w-full max-h-[78vh] object-contain"
             />
-          </div>
-
-          {/* Подпись к фото – под кадром, вне изображения */}
-          <div
-            className="flex items-center justify-center gap-4 sm:gap-6 px-5 h-20 sm:h-24 shrink-0"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => step(-1)}
-              aria-label="Предыдущее фото"
-              className="w-11 h-11 border border-border hover:border-primary flex items-center justify-center transition-colors shrink-0"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <div className="text-center">
-              <p className="text-sm">
-                {title} <span className="text-muted-foreground">– {open + 1} / {total}</span>
-              </p>
-              <p className="text-xs text-muted-foreground mt-1">
-                стрелки на клавиатуре листают, Esc закрывает
-              </p>
-            </div>
-            <button
-              onClick={() => step(1)}
-              aria-label="Следующее фото"
-              className="w-11 h-11 border border-border hover:border-primary flex items-center justify-center transition-colors shrink-0"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
+            <figcaption className="text-center text-sm">
+              {photos[open].caption ?? title}{" "}
+              <span className="text-muted-foreground">
+                · {open + 1} / {total}
+              </span>
+            </figcaption>
+          </figure>
         </div>
       )}
     </div>

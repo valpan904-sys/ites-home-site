@@ -108,12 +108,7 @@ export default function ProjectPage() {
         {/* Фотографии – полосой на всю ширину, кадры в одном формате */}
         {photos.length > 0 && (
           <section className="space-y-6">
-            <div className="space-y-4">
-              <p className="text-primary text-sm uppercase tracking-widest font-medium">– Фотографии</p>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-                Объект в работе <span className="text-muted-foreground font-normal">({photos.length})</span>
-              </h2>
-            </div>
+            <p className="text-primary text-sm uppercase tracking-widest font-medium">– Фотографии</p>
             <PhotoStrip photos={photos} title={project.title} />
           </section>
         )}

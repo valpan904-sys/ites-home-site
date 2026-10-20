@@ -143,6 +143,12 @@ def main():
     alt_base = args.alt or args.slug
     photos: list[dict] = []
     report, skipped = [], []
+
+    # подписи кадров из презентации заказчика (пересборка их не теряет)
+    cap_file = os.path.join(PROJ, "src", "content", "photo-captions.json")
+    captions: dict = {}
+    if os.path.exists(cap_file):
+        captions = json.load(open(cap_file, encoding="utf-8")).get(args.slug, {})
     n = 0
 
     for path in files:
@@ -183,8 +189,12 @@ def main():
             "src": "/media/projects/%s/%s" % (args.slug, big),
             "thumb": "/media/projects/%s/%s" % (args.slug, thumb),
             "w": size[0], "h": size[1],
-            "alt": "%s – фото %d" % (alt_base, n),
+            "alt": "%s, фото %d" % (alt_base, n),
         }
+        cap = captions.get(name, "")
+        if cap:
+            photo["caption"] = cap
+            photo["alt"] = "%s, %s" % (cap, alt_base)
         if fit != "cover":
             photo["fit"] = fit
         photos.append(photo)
