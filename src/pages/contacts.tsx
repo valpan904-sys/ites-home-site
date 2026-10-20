@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { PageHeading } from "@/components/Breadcrumbs";
 import { COMPANY, SOCIALS } from "@/content/site";
+import { url } from "@/lib/url";
 
 export default function Contacts() {
   return (
@@ -26,12 +27,12 @@ export default function Contacts() {
               <div className="space-y-3 text-base">
                 <p className="text-foreground font-medium">{COMPANY.name}</p>
                 <p>
-                  <a href={COMPANY.phoneHref} className="inline-flex items-center gap-2 text-primary hover:text-foreground transition-colors">
+                  <a href={url(COMPANY.phoneHref)} className="inline-flex items-center gap-2 text-primary hover:text-foreground transition-colors">
                     <Phone className="w-4 h-4" /> {COMPANY.phone}
                   </a>
                 </p>
                 <p>
-                  <a href={`mailto:${COMPANY.email}`} className="inline-flex items-center gap-2 text-primary hover:text-foreground transition-colors break-all">
+                  <a href={url(`mailto:${COMPANY.email}`)} className="inline-flex items-center gap-2 text-primary hover:text-foreground transition-colors break-all">
                     <Mail className="w-4 h-4 shrink-0" /> {COMPANY.email}
                   </a>
                 </p>
@@ -47,7 +48,7 @@ export default function Contacts() {
                 {SOCIALS.slice(0, 2).map((s) => (
                   <a
                     key={s.href}
-                    href={s.href}
+                    href={url(s.href)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-muted-foreground hover:text-foreground font-medium transition-colors text-sm"
@@ -55,10 +56,10 @@ export default function Contacts() {
                     {s.label}
                   </a>
                 ))}
-                <a href={SOCIALS[2].href} target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте" className="text-muted-foreground hover:text-[#0077FF] transition-colors">
+                <a href={url(SOCIALS[2].href)} target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте" className="text-muted-foreground hover:text-[#0077FF] transition-colors">
                   <SiVk className="w-5 h-5" />
                 </a>
-                <a href={SOCIALS[3].href} target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="text-muted-foreground hover:text-[#2AABEE] transition-colors">
+                <a href={url(SOCIALS[3].href)} target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="text-muted-foreground hover:text-[#2AABEE] transition-colors">
                   <SiTelegram className="w-5 h-5" />
                 </a>
               </div>
@@ -69,7 +70,7 @@ export default function Contacts() {
               <p className="text-sm text-muted-foreground">
                 Карточку предприятия, реквизиты и разрешительные документы вышлем по запросу на {COMPANY.email}.
                 Выписка из реестра СРО и сертификат дистрибьютера доступны в разделе{" "}
-                <Link href="/documents/" className="text-primary hover:text-foreground transition-colors">
+                <Link href={url("/documents/")} className="text-primary hover:text-foreground transition-colors">
                   Документы
                 </Link>
                 .
@@ -90,7 +91,7 @@ export default function Contacts() {
               <li>— контакты для ответа.</li>
             </ul>
             <Link
-              href="/#contacts"
+              href={url("/#contacts")}
               className="inline-flex items-center justify-center border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors px-5 py-3 text-sm font-medium w-full"
             >
               Перейти к форме заявки
@@ -98,7 +99,7 @@ export default function Contacts() {
             <p className="text-xs text-muted-foreground/70">
               Отправляя заявку, вы соглашаетесь с{" "}
               <a
-                href="/privacy-policy.pdf"
+                href={url("/privacy-policy.pdf")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary underline underline-offset-2"

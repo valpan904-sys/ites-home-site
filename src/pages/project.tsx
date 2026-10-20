@@ -10,6 +10,7 @@ import { serviceBySlug } from "@/content/services";
 import { COMPANY } from "@/content/site";
 import docmap from "@/content/documents-map.json";
 import NotFound from "./not-found";
+import { url } from "@/lib/url";
 
 const video = (docmap as { video?: { src: string; poster: string } | null }).video ?? null;
 
@@ -35,7 +36,7 @@ export default function ProjectPage() {
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-start">
           <div className="relative overflow-hidden border border-border">
             <img
-              src={project.photo}
+              src={url(project.photo)}
               alt={`${project.title} — ${project.client}, ${project.location}`}
               loading="eager"
               decoding="async"
@@ -63,7 +64,7 @@ export default function ProjectPage() {
                 return (
                   <Link
                     key={s}
-                    href={`/services/${svc.slug}/`}
+                    href={url(`/services/${svc.slug}/`)}
                     className="inline-flex items-center gap-1.5 border border-border hover:border-primary text-sm px-3 py-1.5 text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {svc.title}
@@ -74,7 +75,7 @@ export default function ProjectPage() {
 
             {project.doc && (
               <a
-                href={project.doc.file}
+                href={url(project.doc.file)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors px-5 py-2.5 text-sm font-medium group"
@@ -100,10 +101,10 @@ export default function ProjectPage() {
               <video
                 controls
                 preload="none"
-                poster={video.poster}
+                poster={url(video.poster)}
                 className="w-full max-w-3xl border border-border"
               >
-                <source src={video.src} type="video/mp4" />
+                <source src={url(video.src)} type="video/mp4" />
                 Ваш браузер не поддерживает видео.
               </video>
             )}
@@ -121,13 +122,13 @@ export default function ProjectPage() {
           </div>
           <div className="flex gap-3 shrink-0">
             <a
-              href={COMPANY.phoneHref}
+              href={url(COMPANY.phoneHref)}
               className="inline-flex items-center gap-2 border border-border hover:border-primary px-5 py-2.5 text-sm font-medium transition-colors"
             >
               <Phone className="w-4 h-4" /> Позвонить
             </a>
             <Link
-              href="/contacts/"
+              href={url("/contacts/")}
               className="inline-flex items-center gap-2 border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors px-5 py-2.5 text-sm font-medium"
             >
               Оставить заявку
@@ -141,11 +142,11 @@ export default function ProjectPage() {
             {others.map((p) => (
               <Link
                 key={p.slug}
-                href={`/projects/${p.slug}/`}
+                href={url(`/projects/${p.slug}/`)}
                 className="group border border-border hover:border-primary transition-colors flex flex-col"
               >
                 <img
-                  src={p.photo}
+                  src={url(p.photo)}
                   alt={`${p.title} — ${p.client}`}
                   loading="lazy"
                   decoding="async"

@@ -10,6 +10,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 import { COMPANY, NAV } from "@/content/site";
 import logoForDark from "@assets/ites_fin_var_black_1_1774953769032.png";
 import logoForLight from "@assets/ites_fin_var_1_1774953769031.png";
+import { url } from "@/lib/url";
 
 export function SiteHeader({ solid = false }: { solid?: boolean }) {
   const [scrolled, setScrolled] = useState(solid);
@@ -37,9 +38,9 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
       ].join(" ")}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
-        <Link href="/" className="flex items-center shrink-0" aria-label={COMPANY.shortName}>
+        <Link href={url("/")} className="flex items-center shrink-0" aria-label={COMPANY.shortName}>
           <img
-            src={theme === "dark" ? logoForDark : logoForLight}
+            src={url(theme === "dark" ? logoForDark : logoForLight)}
             alt={`${COMPANY.shortName} — ${COMPANY.tagline}`}
             className="h-8 w-auto object-contain"
             draggable={false}
@@ -50,7 +51,7 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
           {NAV.filter((n) => n.href !== "/").map((n) => (
             <Link
               key={n.href}
-              href={n.href}
+              href={url(n.href)}
               className={[
                 "text-sm uppercase tracking-wider transition-colors",
                 isActive(n.href) ? "text-primary" : "text-muted-foreground hover:text-foreground",
@@ -63,7 +64,7 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
 
         <div className="flex items-center gap-2 sm:gap-3">
           <a
-            href={COMPANY.phoneHref}
+            href={url(COMPANY.phoneHref)}
             className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             <Phone className="w-4 h-4" />
@@ -93,7 +94,7 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
             {NAV.map((n) => (
               <Link
                 key={n.href}
-                href={n.href}
+                href={url(n.href)}
                 className={[
                   "py-3 text-sm uppercase tracking-wider border-b border-border/30 last:border-0 transition-colors",
                   isActive(n.href) ? "text-primary" : "text-muted-foreground",
@@ -102,7 +103,7 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
                 {n.label}
               </Link>
             ))}
-            <a href={COMPANY.phoneHref} className="py-3 text-sm text-primary">
+            <a href={url(COMPANY.phoneHref)} className="py-3 text-sm text-primary">
               {COMPANY.phone}
             </a>
           </div>

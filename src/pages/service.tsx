@@ -8,6 +8,7 @@ import { serviceBySlug } from "@/content/services";
 import { projectsForService } from "@/content/projects";
 import { COMPANY } from "@/content/site";
 import NotFound from "./not-found";
+import { url } from "@/lib/url";
 
 export default function ServicePage() {
   const { slug } = useParams<{ slug: string }>();
@@ -48,11 +49,11 @@ export default function ServicePage() {
                   {examples.map((p) => (
                     <Link
                       key={p.slug}
-                      href={`/projects/${p.slug}/`}
+                      href={url(`/projects/${p.slug}/`)}
                       className="group border border-border hover:border-primary transition-colors flex gap-4 overflow-hidden"
                     >
                       <img
-                        src={p.photo}
+                        src={url(p.photo)}
                         alt={`${p.title} — ${p.client}`}
                         loading="lazy"
                         decoding="async"
@@ -76,16 +77,16 @@ export default function ServicePage() {
               Пришлите описание объекта или проектную документацию — посчитаем объём, стоимость и сроки.
             </p>
             <a
-              href={COMPANY.phoneHref}
+              href={url(COMPANY.phoneHref)}
               className="flex items-center gap-2 text-primary text-sm font-medium hover:text-foreground transition-colors"
             >
               <Phone className="w-4 h-4" /> {COMPANY.phone}
             </a>
-            <a href={`mailto:${COMPANY.email}`} className="block text-sm text-primary hover:text-foreground transition-colors break-all">
+            <a href={url(`mailto:${COMPANY.email}`)} className="block text-sm text-primary hover:text-foreground transition-colors break-all">
               {COMPANY.email}
             </a>
             <Link
-              href="/contacts/"
+              href={url("/contacts/")}
               className="block text-center border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors px-5 py-2.5 text-sm font-medium"
             >
               Оставить заявку

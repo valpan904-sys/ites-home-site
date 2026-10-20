@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { PageHeading } from "@/components/Breadcrumbs";
 import { DOCUMENTS, documentsByGroup, type SiteDocument } from "@/content/documents";
+import { url } from "@/lib/url";
 
 const GROUP_TITLES: Record<SiteDocument["group"], { title: string; note?: string }> = {
   legal: { title: "Разрешительные документы", note: "Проверяются заказчиками перед заключением договора" },
@@ -14,7 +15,7 @@ const GROUP_TITLES: Record<SiteDocument["group"], { title: string; note?: string
 function DocRow({ d }: { d: SiteDocument }) {
   return (
     <a
-      href={d.file}
+      href={url(d.file)}
       target="_blank"
       rel="noopener noreferrer"
       className="group flex items-start gap-4 border border-border hover:border-primary transition-colors p-5"
@@ -57,7 +58,7 @@ export default function Documents() {
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
                 {items.map((d) => (
-                  <DocRow key={d.file} d={d} />
+                  <DocRow key={url(d.file)} d={d} />
                 ))}
               </div>
             </section>

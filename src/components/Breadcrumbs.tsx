@@ -3,6 +3,7 @@
  */
 import { Link } from "wouter";
 import { ChevronRight } from "lucide-react";
+import { url } from "@/lib/url";
 
 export type Crumb = { name: string; href?: string };
 
@@ -13,7 +14,7 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
         {items.map((c, i) => (
           <li key={`${c.name}-${i}`} className="flex items-center gap-2">
             {c.href ? (
-              <Link href={c.href} className="hover:text-primary transition-colors">
+              <Link href={url(c.href)} className="hover:text-primary transition-colors">
                 {c.name}
               </Link>
             ) : (

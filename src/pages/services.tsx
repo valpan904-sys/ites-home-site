@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { PageHeading } from "@/components/Breadcrumbs";
 import { SERVICES } from "@/content/services";
 import { COMPANY } from "@/content/site";
+import { url } from "@/lib/url";
 
 export default function Services() {
   return (
@@ -23,12 +24,12 @@ export default function Services() {
           {SERVICES.map((s) => (
             <Link
               key={s.slug}
-              href={`/services/${s.slug}/`}
+              href={url(`/services/${s.slug}/`)}
               className="group border border-border hover:border-primary transition-colors flex flex-col sm:flex-row overflow-hidden"
             >
               {s.photo && (
                 <img
-                  src={s.photo}
+                  src={url(s.photo)}
                   alt={s.title}
                   loading="lazy"
                   decoding="async"

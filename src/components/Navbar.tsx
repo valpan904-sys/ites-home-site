@@ -4,6 +4,7 @@ import { Sun, Moon } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import logoForDark from "@assets/ites_fin_var_black_1_1774953769032.png";
 import logoForLight from "@assets/ites_fin_var_1_1774953769031.png";
+import { url } from "@/lib/url";
 
 const SECTIONS = [
   { id: "about", label: "О компании" },
@@ -64,7 +65,7 @@ export function Navbar() {
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             >
               <img
-                src={theme === "dark" ? logoForDark : logoForLight}
+                src={url(theme === "dark" ? logoForDark : logoForLight)}
                 alt="ИТЭС-Хоум"
                 className="h-8 w-auto object-contain"
                 draggable={false}

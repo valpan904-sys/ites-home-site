@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { PageHeading } from "@/components/Breadcrumbs";
 import { PROJECTS } from "@/content/projects";
 import { COMPANY } from "@/content/site";
+import { url } from "@/lib/url";
 
 export default function Projects() {
   return (
@@ -23,12 +24,12 @@ export default function Projects() {
           {PROJECTS.map((p) => (
             <Link
               key={p.slug}
-              href={`/projects/${p.slug}/`}
+              href={url(`/projects/${p.slug}/`)}
               className="group border border-border hover:border-primary transition-colors flex flex-col"
             >
               <div className="relative overflow-hidden">
                 <img
-                  src={p.photo}
+                  src={url(p.photo)}
                   alt={`${p.title} — ${p.client}`}
                   loading="lazy"
                   decoding="async"
@@ -56,7 +57,7 @@ export default function Projects() {
             </p>
           </div>
           <Link
-            href="/contacts/"
+            href={url("/contacts/")}
             className="inline-flex items-center gap-2 border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors px-5 py-2.5 text-sm font-medium shrink-0"
           >
             Оставить заявку

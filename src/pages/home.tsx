@@ -28,6 +28,7 @@ import {
   CreditCard, DollarSign, ArrowUpRight, ChevronLeft, ChevronRight, MapPin
 } from "lucide-react";
 import { SiVk, SiTelegram } from "react-icons/si";
+import { url } from "@/lib/url";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Введите имя"),
@@ -182,21 +183,21 @@ export default function Home() {
               </div>
               <div className="flex flex-col sm:flex-row gap-6">
                 <a
-                  href="/documents/presentation-company.pdf"
+                  href={url("/documents/presentation-company.pdf")}
                   target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 text-primary hover:text-foreground transition-colors group text-sm font-medium"
                 >
                   ИТЭС-Хоум <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
                 </a>
                 <a
-                  href="/documents/project-management.pdf"
+                  href={url("/documents/project-management.pdf")}
                   target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 text-primary hover:text-foreground transition-colors group text-sm font-medium"
                 >
                   Мы управляем проектами <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
                 </a>
                 <a
-                  href="/documents/presentation-monolit.pdf"
+                  href={url("/documents/presentation-monolit.pdf")}
                   target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 text-primary hover:text-foreground transition-colors group text-sm font-medium"
                 >
@@ -208,7 +209,7 @@ export default function Home() {
             {/* Photo — same height as left column, right side of image preferred */}
             <div className="relative overflow-hidden min-h-[320px]">
               <img
-                src={slide2Bg}
+                src={url(slide2Bg)}
                 alt="Строительство жилых комплексов"
                 loading="lazy"
                 decoding="async"
@@ -218,7 +219,7 @@ export default function Home() {
           </div>
 
           <div className="flex justify-end mb-6">
-            <Link href="/services/" className="inline-flex items-center gap-1 text-primary hover:text-foreground transition-colors text-sm font-medium group/all2">
+            <Link href={url("/services/")} className="inline-flex items-center gap-1 text-primary hover:text-foreground transition-colors text-sm font-medium group/all2">
               Все услуги компании
               <ArrowUpRight className="w-4 h-4 group-hover/all2:-translate-y-0.5 group-hover/all2:translate-x-0.5 transition-transform" />
             </Link>
@@ -252,7 +253,7 @@ export default function Home() {
                   viewport={{ once: true, margin: "-40px" }}
                 >
                   {srv.photo && (
-                    <img src={srv.photo} alt={srv.title} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover object-center" />
+                    <img src={url(srv.photo)} alt={srv.title} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover object-center" />
                   )}
                 </motion.div>
               </div>
@@ -298,7 +299,7 @@ export default function Home() {
                     viewport={{ once: true, margin: "-60px" }}
                   >
                     {srv.photo && (
-                      <img src={srv.photo} alt={srv.title} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover object-center" />
+                      <img src={url(srv.photo)} alt={srv.title} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover object-center" />
                     )}
                   </motion.div>
                 </React.Fragment>
@@ -320,7 +321,7 @@ export default function Home() {
           <div className="space-y-4 mb-10">
             <p className="text-primary text-sm uppercase tracking-widest font-medium">— Проекты</p>
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">Реализованные объекты</h2>
-            <Link href="/projects/" className="inline-flex items-center gap-1 text-primary hover:text-foreground transition-colors text-sm font-medium group/all">
+            <Link href={url("/projects/")} className="inline-flex items-center gap-1 text-primary hover:text-foreground transition-colors text-sm font-medium group/all">
               Все объекты
               <ArrowUpRight className="w-4 h-4 group-hover/all:-translate-y-0.5 group-hover/all:translate-x-0.5 transition-transform" />
             </Link>
@@ -363,7 +364,7 @@ export default function Home() {
                   <div className="h-52 w-full overflow-hidden relative group/photo">
                     {project.photo ? (
                       <img
-                        src={project.photo}
+                        src={url(project.photo)}
                         alt={project.title}
                         loading="lazy"
                         decoding="async"
@@ -395,7 +396,7 @@ export default function Home() {
                     </ul>
                     <div className="mt-4">
                       <Link
-                        href={`/projects/${project.slug}/`}
+                        href={url(`/projects/${project.slug}/`)}
                         className="inline-flex items-center gap-1 text-primary hover:text-foreground transition-colors text-sm font-medium group/link"
                       >
                         Состав работ и фото
@@ -476,13 +477,13 @@ export default function Home() {
             {/* Выписка СРО */}
             <div className="flex flex-col gap-4">
               <a
-                href={`${import.meta.env.BASE_URL}sro.pdf`}
+                href={url(`${import.meta.env.BASE_URL}sro.pdf`)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block border border-border rounded-lg overflow-hidden hover:border-primary transition-colors"
               >
                 <img
-                  src={docSro}
+                  src={url(docSro)}
                   alt="Выписка СРО — первая страница"
                   loading="lazy"
                   decoding="async"
@@ -492,7 +493,7 @@ export default function Home() {
               <div className="flex items-center justify-between gap-4">
                 <p className="font-medium text-sm">Выписка из реестра СРО</p>
                 <a
-                  href={`${import.meta.env.BASE_URL}sro.pdf`}
+                  href={url(`${import.meta.env.BASE_URL}sro.pdf`)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 text-primary hover:text-foreground transition-colors text-sm font-medium group shrink-0"
@@ -505,13 +506,13 @@ export default function Home() {
             {/* Сертификат */}
             <div className="flex flex-col gap-4">
               <a
-                href={`${import.meta.env.BASE_URL}cert.pdf`}
+                href={url(`${import.meta.env.BASE_URL}cert.pdf`)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block border border-border rounded-lg overflow-hidden hover:border-primary transition-colors"
               >
                 <img
-                  src={docCert}
+                  src={url(docCert)}
                   alt="Сертификат дистрибьютера — первая страница"
                   loading="lazy"
                   decoding="async"
@@ -521,7 +522,7 @@ export default function Home() {
               <div className="flex items-center justify-between gap-4">
                 <p className="font-medium text-sm">Сертификат дистрибьютера</p>
                 <a
-                  href={`${import.meta.env.BASE_URL}cert.pdf`}
+                  href={url(`${import.meta.env.BASE_URL}cert.pdf`)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 text-primary hover:text-foreground transition-colors text-sm font-medium group shrink-0"
@@ -573,7 +574,7 @@ export default function Home() {
               <div className="grid grid-cols-3 gap-x-2 sm:gap-x-8 h-full" style={{ alignContent: "space-between" }}>
                 {BANKS.map((bank) => (
                   <div key={bank.alt} className="flex items-center justify-center py-2">
-                    <img src={bank.src} alt={bank.alt} loading="lazy" decoding="async" className="h-7 w-auto object-contain" />
+                    <img src={url(bank.src)} alt={bank.alt} loading="lazy" decoding="async" className="h-7 w-auto object-contain" />
                   </div>
                 ))}
               </div>
@@ -718,7 +719,7 @@ export default function Home() {
                         <span className="text-xs text-muted-foreground leading-relaxed">
                           Я ознакомлен(а) с{" "}
                           <a
-                            href={`${import.meta.env.BASE_URL}privacy-policy.pdf`}
+                            href={url(`${import.meta.env.BASE_URL}privacy-policy.pdf`)}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"

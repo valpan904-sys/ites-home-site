@@ -5,6 +5,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import type { GalleryPhoto } from "@/content/projects";
+import { url } from "@/lib/url";
 
 export function Gallery({ photos, title }: { photos: GalleryPhoto[]; title: string }) {
   const [index, setIndex] = useState<number | null>(null);
@@ -44,7 +45,7 @@ export function Gallery({ photos, title }: { photos: GalleryPhoto[]; title: stri
             aria-label={`Открыть фото ${i + 1} из ${photos.length}`}
           >
             <img
-              src={p.thumb}
+              src={url(p.thumb)}
               alt={p.alt}
               width={p.w}
               height={p.h}
@@ -79,7 +80,7 @@ export function Gallery({ photos, title }: { photos: GalleryPhoto[]; title: stri
           </button>
           <figure className="max-w-[92vw] max-h-[88vh] flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
             <img
-              src={photos[index].src}
+              src={url(photos[index].src)}
               alt={photos[index].alt}
               width={photos[index].w}
               height={photos[index].h}

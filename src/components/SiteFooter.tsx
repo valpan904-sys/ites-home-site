@@ -8,6 +8,7 @@ import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { COMPANY, NAV, SOCIALS } from "@/content/site";
 import { DOCUMENTS } from "@/content/documents";
 import { PROJECTS } from "@/content/projects";
+import { url } from "@/lib/url";
 
 export function SiteFooter() {
   return (
@@ -18,12 +19,12 @@ export function SiteFooter() {
             <p className="text-sm font-bold text-foreground mb-4">{COMPANY.name}</p>
             <ul className="space-y-3 text-sm">
               <li>
-                <a href={COMPANY.phoneHref} className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+                <a href={url(COMPANY.phoneHref)} className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
                   <Phone className="w-4 h-4 shrink-0" /> {COMPANY.phone}
                 </a>
               </li>
               <li>
-                <a href={`mailto:${COMPANY.email}`} className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+                <a href={url(`mailto:${COMPANY.email}`)} className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
                   <Mail className="w-4 h-4 shrink-0" /> {COMPANY.email}
                 </a>
               </li>
@@ -38,7 +39,7 @@ export function SiteFooter() {
             <ul className="space-y-2 text-sm">
               {NAV.map((n) => (
                 <li key={n.href}>
-                  <Link href={n.href} className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href={url(n.href)} className="text-muted-foreground hover:text-foreground transition-colors">
                     {n.label}
                   </Link>
                 </li>
@@ -51,13 +52,13 @@ export function SiteFooter() {
             <ul className="space-y-2 text-sm">
               {PROJECTS.slice(0, 5).map((p) => (
                 <li key={p.slug}>
-                  <Link href={`/projects/${p.slug}/`} className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href={url(`/projects/${p.slug}/`)} className="text-muted-foreground hover:text-foreground transition-colors">
                     {p.title}
                   </Link>
                 </li>
               ))}
               <li>
-                <Link href="/projects/" className="text-primary hover:text-foreground transition-colors">
+                <Link href={url("/projects/")} className="text-primary hover:text-foreground transition-colors">
                   Все объекты
                 </Link>
               </li>
@@ -68,9 +69,9 @@ export function SiteFooter() {
             <p className="text-sm font-bold text-foreground mb-4">Документы</p>
             <ul className="space-y-2 text-sm">
               {DOCUMENTS.slice(0, 5).map((d) => (
-                <li key={d.file}>
+                <li key={url(d.file)}>
                   <a
-                    href={d.file}
+                    href={url(d.file)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-muted-foreground hover:text-foreground transition-colors"
@@ -80,20 +81,20 @@ export function SiteFooter() {
                 </li>
               ))}
               <li>
-                <Link href="/documents/" className="text-primary hover:text-foreground transition-colors">
+                <Link href={url("/documents/")} className="text-primary hover:text-foreground transition-colors">
                   Все документы
                 </Link>
               </li>
             </ul>
             <div className="flex items-center gap-5 mt-5">
-              <a href={SOCIALS[3].href} target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="text-muted-foreground hover:text-[#2AABEE] transition-colors">
+              <a href={url(SOCIALS[3].href)} target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="text-muted-foreground hover:text-[#2AABEE] transition-colors">
                 <SiTelegram className="w-5 h-5" />
               </a>
-              <a href={SOCIALS[2].href} target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте" className="text-muted-foreground hover:text-[#0077FF] transition-colors">
+              <a href={url(SOCIALS[2].href)} target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте" className="text-muted-foreground hover:text-[#0077FF] transition-colors">
                 <SiVk className="w-5 h-5" />
               </a>
               {SOCIALS.slice(0, 2).map((s) => (
-                <a key={s.href} href={s.href} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <a key={s.href} href={url(s.href)} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                   <span className="inline-flex items-center gap-1">
                     {s.label} <ArrowUpRight className="w-3 h-3" />
                   </span>
@@ -108,7 +109,7 @@ export function SiteFooter() {
             © {new Date().getFullYear()} {COMPANY.name}. Все права защищены.
           </p>
           <a
-            href="/privacy-policy.pdf"
+            href={url("/privacy-policy.pdf")}
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs text-muted-foreground/60 hover:text-primary underline underline-offset-2 transition-colors"
