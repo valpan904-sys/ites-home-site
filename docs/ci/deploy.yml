@@ -1,0 +1,81 @@
+name: Сборка сайта (и публикация демо-версии)
+
+# На каждый push в main:
+#   1) сайт собирается — сразу видно, что правки не сломали сборку;
+#   2) если включена демо-публикация (переменная репозитория ENABLE_PAGES=1) —
+#      обновляется демо-версия сайта для коллег.
+#
+# Как включить демо-публикацию:
+#   1. положить этот файл в .github/workflows/deploy.yml (в веб-интерфейсе GitHub:
+#      Add file → Create new file → имя .github/workflows/deploy.yml → вставить текст);
+#      через gh CLI получится только после `gh auth refresh -s workflow`;
+#   2. Settings → Pages → Source: GitHub Actions;
+#   3. Settings → Secrets and variables → Actions → Variables: добавить
+#      ENABLE_PAGES = 1, при желании BASE_PATH и DEMO_DOMAIN.
+#
+# BASE_PATH: "/" для своего домена (например demo.home.ltd-ites.com),
+#            "/ites-home-site/" — если публикуем по адресу valpan904-sys.github.io/ites-home-site/
+#            (в этом случае внутренние ссылки сайта нужно сделать относительными к BASE_PATH).
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Установка зависимостей
+        run: npm ci
+
+      - name: Сборка сайта (страницы, sitemap, 404)
+        env:
+          BASE_PATH: ${{ vars.BASE_PATH || '/' }}
+          PREVIEW: '1'
+        run: npm run build
+
+      - name: Показать результат сборки
+        run: |
+          echo "страниц: $(find dist/public -name index.html | wc -l)"
+          du -sh dist/public
+
+      - name: Подготовить публикацию (если демо включено)
+        if: vars.ENABLE_PAGES == '1'
+        uses: actions/configure-pages@v5
+
+      - name: Записать домен демо-версии
+        if: vars.ENABLE_PAGES == '1' && vars.DEMO_DOMAIN != ''
+        run: echo "${{ vars.DEMO_DOMAIN }}" > dist/public/CNAME
+
+      - uses: actions/upload-pages-artifact@v3
+        if: vars.ENABLE_PAGES == '1'
+        with:
+          path: dist/public
+
+  deploy:
+    needs: build
+    if: vars.ENABLE_PAGES == '1' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
