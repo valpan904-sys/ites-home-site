@@ -44,21 +44,25 @@ export default function ProjectPage() {
             <img src={url(project.photo)} alt={project.title} className="absolute inset-0 h-full w-full object-cover" />
           )}
 
-          {/* лёгкое затемнение, чтобы текст читался на любом кадре */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-transparent" />
+          {/* затемнение под текстом: слева, где стоит заголовок */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
 
           {/* нижняя треть растворяется в фоне страницы – фоновый цвет берётся из темы */}
           <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background via-background/80 to-transparent" />
 
           <div className="absolute inset-x-0 bottom-1/3 pb-4 sm:pb-6">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 text-white">
-              <p className="text-xs uppercase tracking-widest text-white/70 mb-2">
+              <p className="text-xs uppercase tracking-widest text-white/80 mb-2 [text-shadow:0_1px_12px_rgba(0,0,0,0.6)]">
                 {project.client} · {project.location}
               </p>
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight leading-tight max-w-3xl">
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight leading-tight max-w-3xl [text-shadow:0_2px_18px_rgba(0,0,0,0.55)]">
                 {project.title}
               </h1>
-              {project.subtitle && <p className="mt-2 text-sm text-white/80 max-w-2xl">{project.subtitle}</p>}
+              {project.subtitle && (
+                <p className="mt-2 text-sm text-white/85 max-w-2xl [text-shadow:0_1px_12px_rgba(0,0,0,0.6)]">
+                  {project.subtitle}
+                </p>
+              )}
             </div>
           </div>
         </div>
