@@ -205,24 +205,9 @@ def main():
     data[args.slug] = photos
     json.dump(data, open(manifest, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
-    # главный кадр страницы
-    hero_file = os.path.join(PROJ, "src", "content", HERO_FILES.get(args.slug, "hero-%s.json" % args.slug))
-    if photos:
-        hero_src = photos[0]
-        if args.hero:
-            for p in photos:
-                if args.hero.lower() in p["src"].lower():
-                    hero_src = p
-                    break
-        im = ImageOps.exif_transpose(
-            Image.open(os.path.join(out, os.path.basename(hero_src["src"])))
-        ).convert("RGB")
-        size = save_webp(im, os.path.join(out, "hero.webp"), 1600, 84)
-        json.dump({"src": "/media/projects/%s/hero.webp" % args.slug, "w": size[0], "h": size[1],
-                   "alt": "%s – главный вид" % alt_base},
-                  open(hero_file, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-        print("главный кадр: %s (%dx%d) -> hero.webp" % (os.path.basename(hero_src["src"]), size[0], size[1]))
-
+    # главный кадр страницы делает отдельный инструмент tools/upscale-hero.py:
+    # он готовит широкий баннер из лучшего исходника и увеличивает разрешение,
+    # а этот сборщик обрезает кадры до 4:3 и писал бы hero из первого фото
     total = sum(os.path.getsize(os.path.join(out, f)) for f in os.listdir(out))
     print("манифест обновлён (ключ %s), вес папки: %.1f МБ" % (args.slug, total / 1048576))
     return 0

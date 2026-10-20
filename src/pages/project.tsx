@@ -31,9 +31,13 @@ export default function ProjectPage() {
           {hero ? (
             <img
               src={url(hero.src)}
+              srcSet={`${url(hero.srcSmall ?? hero.src)} 1280w, ${url(hero.src)} ${hero.w}w`}
+              sizes="100vw"
               alt={hero.alt}
               width={hero.w}
               height={hero.h}
+              fetchPriority="high"
+              decoding="async"
               className="absolute inset-0 h-full w-full object-cover"
             />
           ) : (

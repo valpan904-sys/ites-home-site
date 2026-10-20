@@ -43,7 +43,7 @@ export type Project = {
   linkText?: string;
   link?: string;
   /* ниже – данные страницы объекта */
-  hero?: { src: string; w: number; h: number; alt: string };
+  hero?: { src: string; srcSmall?: string; w: number; h: number; alt: string };
   subtitle?: string;
   about?: string[];
   facts?: { label: string; value: string }[];
