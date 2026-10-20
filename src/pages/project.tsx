@@ -70,7 +70,7 @@ export default function ProjectPage() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16 space-y-14 sm:space-y-24">
         <Link
-          href="/"
+          href={url("/")}
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
         >
           <ArrowLeft className="w-4 h-4" /> На главную
@@ -147,7 +147,7 @@ export default function ProjectPage() {
               <Phone className="w-4 h-4" /> {COMPANY.phone}
             </a>
             <Link
-              href="/#contacts"
+              href={url("/#contacts")}
               className="inline-flex items-center gap-1.5 border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors px-5 py-3 text-sm font-medium"
             >
               Оставить заявку <ArrowUpRight className="w-4 h-4" />

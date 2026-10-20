@@ -386,7 +386,7 @@ export default function Home() {
                     <div className="mt-4">
                       {project.page ? (
                         <Link
-                          href={`/projects/${project.slug}/`}
+                          href={url(`/projects/${project.slug}/`)}
                           className="inline-flex items-center gap-1 text-primary hover:text-foreground transition-colors text-sm font-medium group/link"
                         >
                           Подробнее об объекте

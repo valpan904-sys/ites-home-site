@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { Navbar } from "@/components/Navbar";
 import { SiteFooter } from "@/components/SiteFooter";
 import { COMPANY } from "@/content/site";
+import { url } from "@/lib/url";
 
 export default function NotFound() {
   return (
@@ -20,19 +21,19 @@ export default function NotFound() {
         </p>
         <div className="flex flex-wrap gap-3">
           <Link
-            href="/"
+            href={url("/")}
             className="inline-flex items-center border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors px-5 py-2.5 text-sm font-medium"
           >
             На главную
           </Link>
           <Link
-            href="/#projects"
+            href={url("/#projects")}
             className="inline-flex items-center border border-border hover:border-primary px-5 py-2.5 text-sm font-medium transition-colors"
           >
             Объекты
           </Link>
           <Link
-            href="/#contacts"
+            href={url("/#contacts")}
             className="inline-flex items-center border border-border hover:border-primary px-5 py-2.5 text-sm font-medium transition-colors"
           >
             Контакты
