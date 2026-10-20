@@ -579,14 +579,32 @@
    "src": "/media/projects/kotelnaya-tplus/03.webp",
    "thumb": "/media/projects/kotelnaya-tplus/03-t.webp",
    "w": 1200,
-   "h": 1600,
-   "alt": "Монтаж молниеприемников. Работы на высоте, Куйбышевская отопительная котельная, ПАО Т+",
-   "caption": "Монтаж молниеприемников. Работы на высоте",
+   "h": 2136,
+   "alt": "Монтаж кабеленесущих систем, Куйбышевская отопительная котельная, ПАО Т+",
+   "caption": "Монтаж кабеленесущих систем",
    "fit": "contain"
   },
   {
    "src": "/media/projects/kotelnaya-tplus/04.webp",
    "thumb": "/media/projects/kotelnaya-tplus/04-t.webp",
+   "w": 1200,
+   "h": 2133,
+   "alt": "Монтаж кабеленесущих систем, Куйбышевская отопительная котельная, ПАО Т+",
+   "caption": "Монтаж кабеленесущих систем",
+   "fit": "contain"
+  },
+  {
+   "src": "/media/projects/kotelnaya-tplus/05.webp",
+   "thumb": "/media/projects/kotelnaya-tplus/05-t.webp",
+   "w": 1200,
+   "h": 2136,
+   "alt": "Прокладка силового кабеля. Внешние сети, Куйбышевская отопительная котельная, ПАО Т+",
+   "caption": "Прокладка силового кабеля. Внешние сети",
+   "fit": "contain"
+  },
+  {
+   "src": "/media/projects/kotelnaya-tplus/06.webp",
+   "thumb": "/media/projects/kotelnaya-tplus/06-t.webp",
    "w": 808,
    "h": 1440,
    "alt": "Прокладка кабеля. Внешние сети, Куйбышевская отопительная котельная, ПАО Т+",
@@ -594,33 +612,24 @@
    "fit": "contain"
   },
   {
-   "src": "/media/projects/kotelnaya-tplus/05.webp",
-   "thumb": "/media/projects/kotelnaya-tplus/05-t.webp",
-   "w": 1076,
-   "h": 808,
-   "alt": "Монтаж молниеприемников. Работы на высоте, Куйбышевская отопительная котельная, ПАО Т+",
-   "caption": "Монтаж молниеприемников. Работы на высоте"
-  },
-  {
-   "src": "/media/projects/kotelnaya-tplus/06.webp",
-   "thumb": "/media/projects/kotelnaya-tplus/06-t.webp",
-   "w": 1200,
-   "h": 2136,
-   "alt": "Монтаж кабеленесущих систем, Куйбышевская отопительная котельная, ПАО Т+",
-   "caption": "Монтаж кабеленесущих систем",
-   "fit": "contain"
-  },
-  {
    "src": "/media/projects/kotelnaya-tplus/07.webp",
    "thumb": "/media/projects/kotelnaya-tplus/07-t.webp",
    "w": 1200,
    "h": 901,
-   "alt": "Общестроительные работы, земляные работы, Куйбышевская отопительная котельная, ПАО Т+",
-   "caption": "Общестроительные работы, земляные работы"
+   "alt": "Монтаж металлоконструкций для кабельных систем, Куйбышевская отопительная котельная, ПАО Т+",
+   "caption": "Монтаж металлоконструкций для кабельных систем"
   },
   {
    "src": "/media/projects/kotelnaya-tplus/08.webp",
    "thumb": "/media/projects/kotelnaya-tplus/08-t.webp",
+   "w": 1200,
+   "h": 901,
+   "alt": "Монтаж металлоконструкций для кабельных систем, Куйбышевская отопительная котельная, ПАО Т+",
+   "caption": "Монтаж металлоконструкций для кабельных систем"
+  },
+  {
+   "src": "/media/projects/kotelnaya-tplus/09.webp",
+   "thumb": "/media/projects/kotelnaya-tplus/09-t.webp",
    "w": 1080,
    "h": 1440,
    "alt": "Монтаж и наладка ИТСО, Куйбышевская отопительная котельная, ПАО Т+",
@@ -628,32 +637,8 @@
    "fit": "contain"
   },
   {
-   "src": "/media/projects/kotelnaya-tplus/09.webp",
-   "thumb": "/media/projects/kotelnaya-tplus/09-t.webp",
-   "w": 1200,
-   "h": 901,
-   "alt": "Поставка и монтаж трансформаторов, Куйбышевская отопительная котельная, ПАО Т+",
-   "caption": "Поставка и монтаж трансформаторов"
-  },
-  {
    "src": "/media/projects/kotelnaya-tplus/10.webp",
    "thumb": "/media/projects/kotelnaya-tplus/10-t.webp",
-   "w": 1200,
-   "h": 901,
-   "alt": "Монтаж металлоконструкций для кабельных систем, Куйбышевская отопительная котельная, ПАО Т+",
-   "caption": "Монтаж металлоконструкций для кабельных систем"
-  },
-  {
-   "src": "/media/projects/kotelnaya-tplus/11.webp",
-   "thumb": "/media/projects/kotelnaya-tplus/11-t.webp",
-   "w": 1200,
-   "h": 901,
-   "alt": "Монтаж металлоконструкций для кабельных систем, Куйбышевская отопительная котельная, ПАО Т+",
-   "caption": "Монтаж металлоконструкций для кабельных систем"
-  },
-  {
-   "src": "/media/projects/kotelnaya-tplus/12.webp",
-   "thumb": "/media/projects/kotelnaya-tplus/12-t.webp",
    "w": 808,
    "h": 1440,
    "alt": "Монтаж сигнального освещения дымовой трубы. Работы на высоте, Куйбышевская отопительная котельная, ПАО Т+",
@@ -661,13 +646,29 @@
    "fit": "contain"
   },
   {
+   "src": "/media/projects/kotelnaya-tplus/11.webp",
+   "thumb": "/media/projects/kotelnaya-tplus/11-t.webp",
+   "w": 1076,
+   "h": 808,
+   "alt": "Монтаж молниеприемников. Работы на высоте, Куйбышевская отопительная котельная, ПАО Т+",
+   "caption": "Монтаж молниеприемников. Работы на высоте"
+  },
+  {
+   "src": "/media/projects/kotelnaya-tplus/12.webp",
+   "thumb": "/media/projects/kotelnaya-tplus/12-t.webp",
+   "w": 1200,
+   "h": 1600,
+   "alt": "Поставка и монтаж трансформаторов, Куйбышевская отопительная котельная, ПАО Т+",
+   "caption": "Поставка и монтаж трансформаторов",
+   "fit": "contain"
+  },
+  {
    "src": "/media/projects/kotelnaya-tplus/13.webp",
    "thumb": "/media/projects/kotelnaya-tplus/13-t.webp",
    "w": 1200,
-   "h": 2133,
-   "alt": "Монтаж кабеленесущих систем, Куйбышевская отопительная котельная, ПАО Т+",
-   "caption": "Монтаж кабеленесущих систем",
-   "fit": "contain"
+   "h": 901,
+   "alt": "Комплексная поставка материалов и оборудования, Куйбышевская отопительная котельная, ПАО Т+",
+   "caption": "Комплексная поставка материалов и оборудования"
   },
   {
    "src": "/media/projects/kotelnaya-tplus/14.webp",
@@ -681,10 +682,9 @@
    "src": "/media/projects/kotelnaya-tplus/15.webp",
    "thumb": "/media/projects/kotelnaya-tplus/15-t.webp",
    "w": 1200,
-   "h": 2136,
-   "alt": "Прокладка силового кабеля. Внешние сети, Куйбышевская отопительная котельная, ПАО Т+",
-   "caption": "Прокладка силового кабеля. Внешние сети",
-   "fit": "contain"
+   "h": 901,
+   "alt": "Общестроительные работы, земляные работы, Куйбышевская отопительная котельная, ПАО Т+",
+   "caption": "Общестроительные работы, земляные работы"
   }
  ]
 }

@@ -151,11 +151,24 @@ def main():
     photos: list[dict] = []
     report, skipped = [], []
 
-    # подписи кадров из презентации заказчика (пересборка их не теряет)
+    # подписи и порядок кадров из презентации заказчика (пересборка их не теряет)
     cap_file = os.path.join(PROJ, "src", "content", "photo-captions.json")
     captions: dict = {}
+    order: list = []
     if os.path.exists(cap_file):
-        captions = json.load(open(cap_file, encoding="utf-8")).get(args.slug, {})
+        data = json.load(open(cap_file, encoding="utf-8")).get(args.slug, {})
+        if "captions" in data or "order" in data:
+            captions = data.get("captions", {})
+            order = data.get("order", [])
+        else:                              # старый формат: просто словарь подписей
+            captions = data
+
+    if order:
+        known = [f for f in order if os.path.join(args.src, f) in files]
+        rest = [f for f in files if os.path.basename(f) not in known]
+        files = [os.path.join(args.src, f) for f in known] + rest
+        print("порядок кадров задан вручную: %d из %d" % (len(known), len(files)))
+
     n = 0
 
     for path in files:
