@@ -80,8 +80,8 @@ export const PROJECT_ROUTES: RouteMeta[] = PROJECTS.filter((p) => p.page).map((p
   path: `/projects/${p.slug}`,
   title: `${p.title} — ${p.client} | Объекты ИТЭС-Хоум`,
   description: clamp(
-    `${p.title}, ${p.location}. Заказчик: ${p.client}. ${(p.workGroups ?? [])
-      .flatMap((g) => g.items)
+    `${p.title}, ${p.location}. Заказчик: ${p.client}. ${(p.scope ?? [])
+      .flatMap((s) => s.works)
       .join(". ")}`
   ),
   ogImage: p.hero?.src,

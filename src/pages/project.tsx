@@ -4,10 +4,10 @@
  * до появления своих страниц.
  */
 import { Link, useParams } from "wouter";
-import { ArrowLeft, Check, Phone } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Check, Phone } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import { Carousel } from "@/components/Carousel";
+import { PhotoStrip } from "@/components/PhotoStrip";
 import { COMPANY } from "@/content/site";
 import { galleryFor, projectBySlug } from "@/content/projects";
 import { url } from "@/lib/url";
@@ -22,12 +22,12 @@ export default function ProjectPage() {
   const hero = project.hero;
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground w-full font-sans selection:bg-primary/30">
       <SiteHeader solid />
 
-      {/* Заглавное фото с названием объекта */}
+      {/* Заглавное фото и название объекта */}
       <section className="relative">
-        <div className="relative h-[46vh] min-h-[320px] sm:h-[58vh] overflow-hidden">
+        <div className="relative h-[38vh] min-h-[260px] sm:h-[46vh] sm:min-h-[320px] max-h-[520px] overflow-hidden">
           {hero ? (
             <img
               src={url(hero.src)}
@@ -39,24 +39,22 @@ export default function ProjectPage() {
           ) : (
             <img src={url(project.photo)} alt={project.title} className="absolute inset-0 h-full w-full object-cover" />
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
           <div className="absolute inset-x-0 bottom-0">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-8 sm:pb-12 text-white">
-              <p className="text-xs sm:text-sm uppercase tracking-widest text-white/70 mb-3">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-6 sm:pb-9 text-white">
+              <p className="text-xs uppercase tracking-widest text-white/70 mb-2">
                 {project.client} · {project.location}
               </p>
-              <h1 className="text-2xl sm:text-4xl font-bold tracking-tight leading-tight max-w-4xl">
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight leading-tight max-w-3xl">
                 {project.title}
               </h1>
-              {project.subtitle && (
-                <p className="mt-3 text-sm sm:text-base text-white/80 max-w-3xl">{project.subtitle}</p>
-              )}
+              {project.subtitle && <p className="mt-2 text-sm text-white/80 max-w-2xl">{project.subtitle}</p>}
             </div>
           </div>
         </div>
       </section>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16 space-y-14 sm:space-y-20">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16 space-y-14 sm:space-y-24">
         <Link
           href="/#projects"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
@@ -64,9 +62,9 @@ export default function ProjectPage() {
           <ArrowLeft className="w-4 h-4" /> Все объекты
         </Link>
 
-        {/* О проекте + краткие факты */}
-        <section className="grid lg:grid-cols-3 gap-10 sm:gap-14 items-start">
-          <div className="lg:col-span-2 space-y-5">
+        {/* О проекте и краткие данные */}
+        <section className="grid lg:grid-cols-3 gap-8 sm:gap-12 items-start">
+          <div className="lg:col-span-2 space-y-4">
             <p className="text-primary text-sm uppercase tracking-widest font-medium">— О проекте</p>
             {project.about?.map((p, i) => (
               <p key={i} className="text-muted-foreground leading-relaxed">
@@ -77,7 +75,7 @@ export default function ProjectPage() {
 
           <aside className="border border-border divide-y divide-border">
             {project.facts?.map((f) => (
-              <div key={f.label} className="px-5 py-4">
+              <div key={f.label} className="px-4 py-3.5">
                 <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">{f.label}</p>
                 <p className="text-sm font-medium leading-snug">{f.value}</p>
               </div>
@@ -85,82 +83,62 @@ export default function ProjectPage() {
           </aside>
         </section>
 
-        {/* Работы */}
-        {project.workGroups && (
+        {/* Работы и технологии — одна сетка 3×2 */}
+        {project.scope && (
           <section className="space-y-8">
-            <div className="space-y-3">
-              <p className="text-primary text-sm uppercase tracking-widest font-medium">— Работы</p>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Что сделали на объекте</h2>
+            <div className="space-y-4">
+              <p className="text-primary text-sm uppercase tracking-widest font-medium">— Работы и технологии</p>
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Что сделали и какие системы применили</h2>
             </div>
-            <div className="grid sm:grid-cols-2 gap-x-12 gap-y-8">
-              {project.workGroups.map((g) => (
-                <div key={g.title}>
-                  <h3 className="text-base font-bold mb-4">{g.title}</h3>
-                  <ul className="space-y-3">
-                    {g.items.map((it, i) => (
-                      <li key={i} className="flex gap-3 text-muted-foreground leading-relaxed">
-                        <Check className="w-4 h-4 text-primary shrink-0 mt-1" />
-                        <span>{it}</span>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
+              {project.scope.map((s) => (
+                <div key={s.title} className="bg-background p-5 sm:p-6 flex flex-col gap-4">
+                  <h3 className="text-sm font-bold uppercase tracking-wide">{s.title}</h3>
+                  <ul className="space-y-2.5">
+                    {s.works.map((w) => (
+                      <li key={w} className="flex gap-2.5 text-sm text-muted-foreground leading-relaxed">
+                        <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                        <span>{w}</span>
                       </li>
                     ))}
                   </ul>
+                  <p className="text-sm text-muted-foreground leading-relaxed border-t border-border pt-4 mt-auto">
+                    {s.tech}
+                  </p>
                 </div>
               ))}
             </div>
           </section>
         )}
 
-        {/* Технологии */}
-        {project.tech && (
-          <section className="space-y-8">
-            <div className="space-y-3">
-              <p className="text-primary text-sm uppercase tracking-widest font-medium">— Технологии</p>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Системы и решения</h2>
-            </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
-              {project.tech.map((t) => (
-                <div key={t.name} className="bg-background p-6">
-                  <p className="font-bold mb-2">{t.name}</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{t.note}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* Уникальность */}
+        {/* Уникальность проекта */}
         {project.unique && (
-          <section className="border-l-2 border-primary pl-6 sm:pl-8">
-            <p className="text-primary text-sm uppercase tracking-widest font-medium mb-4">— Уникальность</p>
-            <p className="text-lg sm:text-xl leading-relaxed">{project.unique}</p>
+          <section className="border-l-2 border-primary pl-5 sm:pl-6">
+            <p className="text-primary text-sm uppercase tracking-widest font-medium mb-3">— Уникальность проекта</p>
+            <p className="text-base sm:text-lg leading-relaxed">{project.unique}</p>
           </section>
         )}
 
-        {/* Фотографии */}
+        {/* Фотографии — полосой на всю ширину, кадры в одном формате */}
         {photos.length > 0 && (
           <section className="space-y-6">
-            <div className="flex flex-wrap items-end justify-between gap-3">
-              <div className="space-y-3">
-                <p className="text-primary text-sm uppercase tracking-widest font-medium">— Фотографии</p>
-                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-                  Объект в работе <span className="text-muted-foreground font-normal">({photos.length})</span>
-                </h2>
-              </div>
-              <p className="text-xs text-muted-foreground">
-                Все кадры в одном формате · нажмите на фото для полноэкранного просмотра
-              </p>
+            <div className="space-y-4">
+              <p className="text-primary text-sm uppercase tracking-widest font-medium">— Фотографии</p>
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+                Объект в работе <span className="text-muted-foreground font-normal">({photos.length})</span>
+              </h2>
             </div>
-            <Carousel photos={photos} title={project.title} />
+            <PhotoStrip photos={photos} title={project.title} />
           </section>
         )}
 
         {/* Заявка */}
-        <section className="border border-border p-6 sm:p-10 grid lg:grid-cols-2 gap-6 items-center bg-card/40">
+        <section className="border border-border p-5 sm:p-8 grid lg:grid-cols-2 gap-6 items-center">
           <div className="space-y-2">
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight">Похожий объект?</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Расскажите о задаче: посчитаем объём работ, сроки и стоимость. Работаем по договору, полный цикл — от
-              проекта до пусконаладки.
+            <h2 className="text-xl font-bold tracking-tight">Похожий объект?</h2>
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+              Расскажите о задаче: посчитаем объём работ, сроки и стоимость. Полный цикл — от закупки и поставки
+              оборудования до монтажа и пусконаладки.
             </p>
           </div>
           <div className="flex flex-wrap gap-3 lg:justify-end">
@@ -172,9 +150,9 @@ export default function ProjectPage() {
             </a>
             <Link
               href="/#contacts"
-              className="inline-flex items-center gap-2 border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors px-5 py-3 text-sm font-medium"
+              className="inline-flex items-center gap-1.5 border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors px-5 py-3 text-sm font-medium"
             >
-              Оставить заявку
+              Оставить заявку <ArrowUpRight className="w-4 h-4" />
             </Link>
           </div>
         </section>
