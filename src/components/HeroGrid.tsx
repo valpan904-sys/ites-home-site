@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Sun, Moon } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
-import logoForDark from "@assets/ites_fin_var_black_1_1774953769032.png";
-import logoForLight from "@assets/ites_fin_var_1_1774953769031.png";
+import logoForDark from "@assets/ites-group-logo_dark-theme.png";
+import logoForLight from "@assets/ites-group-logo_light-theme.png";
 import { url } from "@/lib/url";
 
 const NAV_ITEMS = [
@@ -72,7 +72,7 @@ export function HeroGrid() {
       >
         <img
           src={url(theme === "dark" ? logoForDark : logoForLight)}
-          alt="ИТЭС-Хоум"
+          alt="ИТЭС group"
           fetchPriority="high"
           loading="eager"
           decoding="sync"

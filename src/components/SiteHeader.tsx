@@ -8,8 +8,8 @@ import { Link, useLocation } from "wouter";
 import { Menu, Moon, Phone, Sun, X } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { COMPANY, NAV } from "@/content/site";
-import logoForDark from "@assets/ites_fin_var_black_1_1774953769032.png";
-import logoForLight from "@assets/ites_fin_var_1_1774953769031.png";
+import logoForDark from "@assets/ites-group-logo_dark-theme.png";
+import logoForLight from "@assets/ites-group-logo_light-theme.png";
 import { url } from "@/lib/url";
 
 export function SiteHeader({ solid = false }: { solid?: boolean }) {
@@ -38,10 +38,10 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
       ].join(" ")}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
-        <Link href={url("/")} className="flex items-center shrink-0" aria-label={COMPANY.shortName}>
+        <Link href={url("/")} className="flex items-center shrink-0" aria-label={COMPANY.brand}>
           <img
             src={url(theme === "dark" ? logoForDark : logoForLight)}
-            alt={`${COMPANY.shortName} — ${COMPANY.tagline}`}
+            alt={`${COMPANY.brand} — ${COMPANY.tagline}`}
             className="h-8 w-auto object-contain"
             draggable={false}
           />

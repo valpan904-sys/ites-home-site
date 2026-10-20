@@ -7,6 +7,7 @@ export const COMPANY = {
   name: "ООО «ИТЭС-Хоум»",
   shortName: "ИТЭС-Хоум",
   group: "ГК ИТЭС",
+  brand: "ИТЭС group",
   tagline: "Строительно-монтажная компания полного цикла",
   city: "Самара",
   region: "Самарская область",
