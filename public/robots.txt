@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /phpmailer/
+
+Sitemap: https://home.ltd-ites.com/sitemap.xml

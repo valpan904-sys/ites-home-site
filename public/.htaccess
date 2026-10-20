@@ -1,0 +1,93 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # ── 1. www -> без www (склеиваем дубли, чтобы вес ссылок не делился) ──────────
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+  # ── 2. Единый вид адресов: /projects -> /projects/ ───────────────────────────
+  #    (канонический адрес — со слэшем; так же они перечислены в sitemap.xml)
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_URI} !/$
+  RewriteRule ^(.*)$ /$1/ [R=301,L]
+</IfModule>
+
+# ── Своя страница 404 вместо заглушки хостинга ────────────────────────────────
+ErrorDocument 404 /404.html
+DirectoryIndex index.html
+
+# ── Типы файлов, которых нет в стандартной конфигурации ───────────────────────
+<IfModule mod_mime.c>
+  AddType font/woff2 .woff2
+  AddType image/webp .webp
+  AddType video/mp4 .mp4
+  AddType application/manifest+json .webmanifest
+</IfModule>
+
+# ── GZIP compression ──────────────────────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE application/manifest+json
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE text/xml
+</IfModule>
+
+<IfModule mod_headers.c>
+  # ── Безопасность ────────────────────────────────────────────────────────────
+  # HSTS: браузер год будет ходить на этот домен только по https.
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+
+  # CSP: сайт подтягивает файлы только со своего домена.
+  #   'unsafe-inline' в script-src нужен для счётчика Яндекс.Метрики,
+  #   в style-src — для inline-стилей анимаций (framer-motion).
+  #   mc.yandex.ru добавлен заранее: после подключения счётчика правки не нужны.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://mc.yandex.ru https://yandex.ru; font-src 'self'; connect-src 'self' https://mc.yandex.ru; media-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'"
+
+  # ── Кэширование ─────────────────────────────────────────────────────────────
+  # Сборка Vite кладёт в имена файлов хеш содержимого — их можно кэшировать навсегда.
+  <FilesMatch "\.(js|css|woff|woff2|ttf|eot)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico|mp4)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # Медиа объектов и документы меняются под теми же именами — кэш короче.
+  <FilesMatch "\.(pdf)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  # HTML — всегда проверяем у сервера: после выкладки страницы должны обновиться.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+</IfModule>
+
+# ── PHP settings (shared hosting) ─────────────────────────────────────────────
+<IfModule mod_php.c>
+  php_flag display_errors Off
+  php_value upload_max_filesize 2M
+  php_value post_max_size 4M
+</IfModule>
+
+# ── Публичные файлы разрешены явно ────────────────────────────────────────────
+<FilesMatch "\.(pdf|jpg|jpeg|png|gif|svg|ico|webp|woff|woff2|mp4)$">
+  Require all granted
+</FilesMatch>
+
+# ── Закрытые пути ─────────────────────────────────────────────────────────────
+<FilesMatch "^(composer\.json|composer\.lock|\.env)$">
+  Require all denied
+</FilesMatch>
+
+# Логи заявок и служебные файлы наружу не отдаём
+RedirectMatch 404 ^/logs(/|$)

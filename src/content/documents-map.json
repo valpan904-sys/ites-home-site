@@ -1,0 +1,15 @@
+{
+ "maps": {
+  "doc-pao-tplus.pdf": "case-kotelnaya-t-plus.pdf",
+  "doc-3.pdf": "case-spg-sabetta.pdf",
+  "doc-1.pdf": "case-kinel.pdf",
+  "doc-2.pdf": "case-bavly.pdf",
+  "doc-presentation-2.1.pdf": "presentation-company.pdf",
+  "doc-4.pdf": "project-management.pdf",
+  "doc-presentation-2.pdf": "presentation-monolit.pdf"
+ },
+ "video": {
+  "src": "/media/projects/spa-kompleks/video.mp4",
+  "poster": "/media/projects/spa-kompleks/video-poster.webp"
+ }
+}
