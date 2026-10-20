@@ -1,13 +1,13 @@
 /** Страница 404 */
 import { Link } from "wouter";
-import { SiteHeader } from "@/components/SiteHeader";
+import { Navbar } from "@/components/Navbar";
 import { SiteFooter } from "@/components/SiteFooter";
 import { COMPANY } from "@/content/site";
 
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
-      <SiteHeader solid />
+      <Navbar alwaysVisible />
       <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-32 sm:pt-40 pb-20 w-full flex-1 space-y-8">
         <p className="text-primary text-sm uppercase tracking-widest font-medium">– Ошибка 404</p>
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight">Страница не найдена</h1>

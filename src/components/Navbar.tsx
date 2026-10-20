@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sun, Moon } from "lucide-react";
+import { useLocation } from "wouter";
 import { useTheme } from "@/contexts/ThemeContext";
 import logoForDark from "@assets/ites-group-logo_dark-theme.png";
 import logoForLight from "@assets/ites-group-logo_light-theme.png";
@@ -12,18 +13,28 @@ const SECTIONS = [
   { id: "contacts", label: "Контакты" },
 ];
 
-export function Navbar() {
-  const [isVisible, setIsVisible] = useState(false);
+/**
+ * Шапка сайта. Одна и та же на всех страницах: на главной появляется после
+ * прокрутки, на внутренних – сразу (иначе с верха страницы некуда уйти).
+ * Пункты меню ведут в разделы главной: если раздела на странице нет, переходим
+ * на главную с якорем.
+ */
+export function Navbar({ alwaysVisible = false }: { alwaysVisible?: boolean }) {
+  const [isVisible, setIsVisible] = useState(alwaysVisible);
   const [activeSection, setActiveSection] = useState("");
   const { theme, toggleTheme } = useTheme();
+  const [location, navigate] = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsVisible(window.scrollY > window.innerHeight * 0.8);
-    };
+    if (alwaysVisible) {
+      setIsVisible(true);
+      return;
+    }
+    const handleScroll = () => setIsVisible(window.scrollY > window.innerHeight * 0.8);
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [alwaysVisible]);
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
@@ -42,11 +53,16 @@ export function Navbar() {
     });
 
     return () => observers.forEach((o) => o.disconnect());
-  }, []);
+  }, [location]);
 
-  const scrollTo = (id: string) => {
+  const go = (id: string) => {
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+    // раздела нет на этой странице – идём на главную, к нужному блоку
+    navigate(url(`/#${id}`));
   };
 
   return (
@@ -62,7 +78,10 @@ export function Navbar() {
           <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
             <div
               className="cursor-pointer flex items-center"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              onClick={() => {
+                if (document.getElementById("about")) window.scrollTo({ top: 0, behavior: "smooth" });
+                else navigate(url("/"));
+              }}
             >
               <img
                 src={url(theme === "dark" ? logoForDark : logoForLight)}
@@ -77,7 +96,7 @@ export function Navbar() {
                 {SECTIONS.map(({ id, label }) => (
                   <button
                     key={id}
-                    onClick={() => scrollTo(id)}
+                    onClick={() => go(id)}
                     className={[
                       "text-sm transition-colors uppercase tracking-wider",
                       activeSection === id

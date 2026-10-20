@@ -6,6 +6,7 @@ import * as z from "zod";
 import { HeroGrid } from "@/components/HeroGrid";
 import { Link } from "wouter";
 import { Navbar } from "@/components/Navbar";
+import { SiteFooter } from "@/components/SiteFooter";
 import { PROJECTS } from "@/content/projects";
 import { SERVICES } from "@/content/services";
 import { url } from "@/lib/url";
@@ -758,34 +759,8 @@ export default function Home() {
         </motion.section>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-border mt-8 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex items-center justify-between gap-4">
-          <div className="flex flex-col gap-1">
-            <p className="text-muted-foreground text-xs">
-              © 2026 ООО «ИТЭС-Хоум». Все права защищены.
-            </p>
-            <a
-              href={`${import.meta.env.BASE_URL}privacy-policy.pdf`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs text-muted-foreground/60 hover:text-primary underline underline-offset-2 transition-colors w-fit"
-            >
-              Политика в отношении обработки персональных данных
-            </a>
-          </div>
-          <div className="cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-            <img
-              src={theme === "dark" ? logoForDark : logoForLight}
-              alt="ИТЭС group"
-              loading="lazy"
-              decoding="async"
-              className="h-8 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
-              draggable={false}
-            />
-          </div>
-        </div>
-      </footer>
+      {/* Подвал */}
+      <SiteFooter />
     </div>
   );
 }

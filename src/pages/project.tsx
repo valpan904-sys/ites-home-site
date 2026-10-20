@@ -5,7 +5,7 @@
  */
 import { Link, useParams } from "wouter";
 import { ArrowLeft, ArrowUpRight, Phone } from "lucide-react";
-import { SiteHeader } from "@/components/SiteHeader";
+import { Navbar } from "@/components/Navbar";
 import { SiteFooter } from "@/components/SiteFooter";
 import { PhotoStrip } from "@/components/PhotoStrip";
 import { COMPANY } from "@/content/site";
@@ -23,7 +23,7 @@ export default function ProjectPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground w-full font-sans selection:bg-primary/30">
-      <SiteHeader solid />
+      <Navbar alwaysVisible />
 
       {/* Заглавное фото и название объекта */}
       <section className="relative">
@@ -60,10 +60,10 @@ export default function ProjectPage() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16 space-y-14 sm:space-y-24">
         <Link
-          href="/#projects"
+          href="/"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
         >
-          <ArrowLeft className="w-4 h-4" /> Все объекты
+          <ArrowLeft className="w-4 h-4" /> На главную
         </Link>
 
         {/* О проекте и краткие данные – блоки одной высоты */}
@@ -81,7 +81,17 @@ export default function ProjectPage() {
             {project.facts?.map((f) => (
               <div key={f.label} className="px-4 py-3.5 flex-1 flex flex-col justify-center">
                 <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">{f.label}</p>
-                <p className="text-sm font-medium leading-snug">{f.value}</p>
+                {Array.isArray(f.value) ? (
+                  <ul className="space-y-1">
+                    {f.value.map((v) => (
+                      <li key={v} className="text-sm font-medium leading-snug">
+                        {v}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-sm font-medium leading-snug">{f.value}</p>
+                )}
               </div>
             ))}
           </aside>
@@ -89,11 +99,8 @@ export default function ProjectPage() {
 
         {/* Работы и технологии – шесть плиток, сплошной текст без списков */}
         {project.scope && (
-          <section className="space-y-8">
-            <div className="space-y-4">
-              <p className="text-primary text-sm uppercase tracking-widest font-medium">– Работы и технологии</p>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Что сделали и какие системы применили</h2>
-            </div>
+          <section className="space-y-6">
+            <p className="text-primary text-sm uppercase tracking-widest font-medium">– Работы и технологии</p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
               {project.scope.map((s) => (
                 <div key={s.title} className="bg-background p-5 sm:p-6 flex flex-col gap-3">
