@@ -22,14 +22,6 @@ export function SiteFooter() {
           >
             Политика в отношении обработки персональных данных
           </a>
-          <a
-            href={url("/consent-personal-data.pdf")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs text-muted-foreground/60 hover:text-primary underline underline-offset-2 transition-colors w-fit"
-          >
-            Согласие на обработку персональных данных
-          </a>
         </div>
         <div className="cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
           <img

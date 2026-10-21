@@ -31,12 +31,6 @@ export const DOCUMENTS: SiteDocument[] = [
     group: "legal",
   },
   {
-    title: "Согласие на обработку персональных данных (форма обратной связи)",
-    file: "/consent-personal-data.pdf",
-    size: "214 КБ",
-    group: "legal",
-  },
-  {
     title: "Презентация компании ИТЭС-Хоум",
     file: "/documents/presentation-company.pdf",
     size: "5,0 МБ",
