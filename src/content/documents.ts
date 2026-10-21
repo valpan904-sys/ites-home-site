@@ -26,8 +26,14 @@ export const DOCUMENTS: SiteDocument[] = [
   },
   {
     title: "Политика в отношении обработки персональных данных",
-    file: "/privacy-policy.pdf",
+    file: "/privacy-policy.pdf?v=20261021",
     size: "397 КБ",
+    group: "legal",
+  },
+  {
+    title: "Согласие на обработку персональных данных (форма обратной связи)",
+    file: "/consent-personal-data.pdf",
+    size: "214 КБ",
     group: "legal",
   },
   {

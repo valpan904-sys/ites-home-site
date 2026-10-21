@@ -158,8 +158,9 @@ $logEntry = [
     'name'             => $name,
     'phone'            => $phone,
     'email'            => $email,
-    // Данные о чекбоксе
+    // Данные о чекбоксах
     'consent_checked'  => true,
+    'policy_checked'   => (bool)($body['policy'] ?? false),
     'consent_ms_after_load' => $consentMeta['ms_since_load'] ?? null,
     'consent_input_type'    => $consentMeta['input_type']    ?? 'unknown',
     'consent_client_x'      => $consentMeta['client_x']      ?? null,

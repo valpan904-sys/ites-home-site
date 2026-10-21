@@ -35,7 +35,8 @@ const contactSchema = z.object({
   phone: z.string().min(10, "Введите корректный номер телефона"),
   email: z.string().email("Введите корректный email"),
   message: z.string().optional(),
-  consent: z.boolean().refine(val => val === true, { message: "Необходимо ваше согласие на обработку данных" })
+  consent: z.boolean().refine(val => val === true, { message: "Отметьте согласие на обработку персональных данных" }),
+  policy: z.boolean().refine(val => val === true, { message: "Подтвердите ознакомление с политикой обработки данных" })
 });
 type ContactFormValues = z.infer<typeof contactSchema>;
 
@@ -109,7 +110,7 @@ export default function Home() {
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
-    defaultValues: { name: "", phone: "", email: "", message: "", consent: false }
+    defaultValues: { name: "", phone: "", email: "", message: "", consent: false, policy: false }
   });
 
   const onSubmit = async (data: ContactFormValues) => {
@@ -718,22 +719,50 @@ export default function Home() {
                           }}
                         />
                         <span className="text-xs text-muted-foreground leading-relaxed">
-                          Я ознакомлен(а) с{" "}
+                          Я даю согласие на обработку моих{" "}
                           <a
-                            href={`${import.meta.env.BASE_URL}privacy-policy.pdf`}
+                            href={`${import.meta.env.BASE_URL}consent-personal-data.pdf`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
                             onClick={e => e.stopPropagation()}
                           >
-                            Политикой в отношении обработки персональных данных
-                          </a>{" "}
-                          и даю согласие на обработку моих персональных данных
+                            персональных данных
+                          </a>
                         </span>
                       </label>
                       {form.formState.errors.consent && (
                         <p className="text-destructive text-xs mt-1.5 ml-7">
                           {form.formState.errors.consent.message}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Ознакомление с политикой обработки персональных данных */}
+                    <div>
+                      <label className="flex items-start gap-3 cursor-pointer group">
+                        <input
+                          type="checkbox"
+                          {...form.register("policy")}
+                          className="mt-0.5 w-4 h-4 shrink-0 accent-primary cursor-pointer"
+                          data-testid="checkbox-policy"
+                        />
+                        <span className="text-xs text-muted-foreground leading-relaxed">
+                          Я ознакомлен с{" "}
+                          <a
+                            href={`${import.meta.env.BASE_URL}privacy-policy.pdf?v=20261021`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+                            onClick={e => e.stopPropagation()}
+                          >
+                            политикой обработки персональных данных
+                          </a>
+                        </span>
+                      </label>
+                      {form.formState.errors.policy && (
+                        <p className="text-destructive text-xs mt-1.5 ml-7">
+                          {form.formState.errors.policy.message}
                         </p>
                       )}
                     </div>

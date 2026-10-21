@@ -15,7 +15,7 @@ export function SiteFooter() {
         <div className="flex flex-col gap-1">
           <p className="text-muted-foreground text-xs">© 2026 ООО «ИТЭС-Хоум». Все права защищены.</p>
           <a
-            href={url("/privacy-policy.pdf")}
+            href={url("/privacy-policy.pdf?v=20261021")}
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs text-muted-foreground/60 hover:text-primary underline underline-offset-2 transition-colors w-fit"
