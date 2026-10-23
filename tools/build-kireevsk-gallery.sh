@@ -28,7 +28,7 @@ echo "=== галерея: кадры одного формата 4:3, поряд
 echo
 echo "=== заглавный кадр: монолитные стены, баннер 3,2:1 ==="
 "$PY" tools/upscale-hero.py "$HERO" kireevsk \
-  --ratio 3.2 --top-bias 0.5 --width 2560 --sharpen 100 \
+  --ratio 3.2 --top-bias 0.42 --width 2560 --sharpen 100 \
   --alt "Монолитные стены очистных сооружений – реконструкция в г. Киреевск"
 
 echo
